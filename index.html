@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#fafaf8;--bg2:#f2f0eb;--text:#1a1a18;--muted:#6b6a65;
+  --accent:#3b3a8f;--accent2:#e8e7ff;--border:#e0deda;
+  --ff:'Inter',system-ui,sans-serif;
+}
+body{font-family:var(--ff);background:var(--bg);color:var(--text);overflow-x:hidden;scroll-behavior:smooth;}
+a{text-decoration:none;color:inherit;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:.9rem 2.5rem;background:rgba(250,250,248,0.93);backdrop-filter:blur(10px);border-bottom:0.5px solid var(--border);}
+.nav-logo{font-size:15px;font-weight:500;flex-shrink:0;}
+.nav-links{display:flex;gap:1.4rem;flex-wrap:wrap;}
+.nav-links a{font-size:12.5px;color:var(--muted);transition:color .2s;padding:4px 0;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--accent);transition:width .25s;}
+.nav-links a:hover{color:var(--text);}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%;}
+.nav-links a.active{color:var(--text);}
+.nav-cta{font-size:12.5px;font-weight:500;background:var(--text);color:var(--bg);padding:7px 15px;border-radius:20px;transition:opacity .2s;flex-shrink:0;}
+.nav-cta:hover{opacity:.8;}
+
+/* LAYOUT */
+.wrap{padding:5.5rem 2.5rem 4rem;max-width:920px;margin:0 auto;}
+.section-label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:1.25rem;}
+.divider{height:0.5px;background:var(--border);max-width:920px;margin:0 auto;}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-top:7rem;padding-bottom:3rem;}
+.hero-eyebrow{font-size:12px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:2rem;opacity:0;animation:fadeUp .6s .2s forwards;}
+h1.hero-title{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:400;line-height:1.15;letter-spacing:-.02em;margin-bottom:1.5rem;}
+.line{display:block;overflow:hidden;}
+.line span{display:inline-block;opacity:0;transform:translateY(40px);animation:slideUp .7s forwards;}
+.line:nth-child(1) span{animation-delay:.3s;}
+.line:nth-child(2) span{animation-delay:.5s;}
+.tw-wrap{display:inline-flex;align-items:center;color:var(--accent);}
+#tw{font-style:italic;}
+.cur{display:inline-block;width:2px;height:.85em;background:var(--accent);vertical-align:middle;margin-left:1px;animation:blink 1s step-end infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+.hero-sub{font-size:16px;color:var(--muted);max-width:520px;line-height:1.75;margin-bottom:2.5rem;opacity:0;animation:fadeUp .6s .9s forwards;}
+.hero-btns{display:flex;gap:1rem;opacity:0;animation:fadeUp .6s 1.1s forwards;}
+.btn-p{background:var(--text);color:var(--bg);padding:11px 24px;border-radius:24px;font-size:14px;font-weight:500;transition:opacity .2s;cursor:pointer;border:none;}
+.btn-p:hover{opacity:.8;}
+.btn-g{border:0.5px solid var(--border);padding:11px 24px;border-radius:24px;font-size:14px;color:var(--muted);transition:border-color .2s,color .2s;background:none;cursor:pointer;}
+.btn-g:hover{border-color:var(--text);color:var(--text);}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:220px 1fr;gap:3rem;align-items:start;}
+.about-img{aspect-ratio:3/4;background:var(--bg2);border-radius:12px;border:0.5px solid var(--border);display:flex;align-items:center;justify-content:center;}
+.about-img span{font-size:12px;color:var(--muted);}
+.about-text h2{font-size:1.55rem;font-weight:400;line-height:1.3;letter-spacing:-.02em;margin-bottom:1.2rem;}
+.about-text p{font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:1rem;}
+.tag-row{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem;}
+.tag{font-size:12px;padding:5px 12px;border-radius:20px;background:var(--accent2);color:var(--accent);font-weight:500;}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+.skill-card{background:var(--bg);border:0.5px solid var(--border);border-radius:12px;padding:1.2rem 1.4rem;transition:border-color .2s,transform .2s;}
+.skill-card:hover{border-color:#aaa;transform:translateY(-3px);}
+.skill-card h3{font-size:13px;font-weight:500;margin-bottom:.85rem;}
+.stags{display:flex;flex-wrap:wrap;gap:.4rem;}
+.stag{font-size:11.5px;padding:4px 10px;border-radius:16px;background:var(--bg2);color:var(--muted);}
+
+/* EDUCATION */
+.edu-list{display:flex;flex-direction:column;gap:1.25rem;}
+.edu-item{border:0.5px solid var(--border);border-radius:12px;padding:1.4rem 1.75rem;display:flex;justify-content:space-between;align-items:start;gap:1rem;transition:border-color .2s;}
+.edu-item:hover{border-color:#aaa;}
+.edu-school{font-size:15px;font-weight:500;margin-bottom:.3rem;}
+.edu-deg{font-size:14px;color:var(--muted);margin-bottom:.2rem;}
+.edu-detail{font-size:13px;color:var(--muted);}
+.edu-year{font-size:13px;color:var(--muted);white-space:nowrap;padding-top:2px;}
+
+/* EVENTS — image cards with overlay */
+.events-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+.event-card{border-radius:14px;overflow:hidden;position:relative;aspect-ratio:4/5;border:0.5px solid var(--border);cursor:pointer;transition:transform .25s;}
+.event-card:hover{transform:scale(1.02);}
+.event-bg{width:100%;height:100%;object-fit:cover;display:block;}
+.event-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;}
+.event-overlay{position:absolute;bottom:0;left:0;right:0;padding:1.25rem 1.1rem 1rem;background:linear-gradient(to top,rgba(10,10,10,.82) 0%,rgba(10,10,10,.4) 60%,transparent 100%);}
+.event-role{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:.3rem;}
+.event-title{font-size:14px;font-weight:500;color:#fff;line-height:1.35;}
+.event-date{font-size:12px;color:rgba(255,255,255,.55);margin-top:.3rem;}
+.upload-hint{font-size:11px;color:rgba(255,255,255,.4);margin-top:.5rem;font-style:italic;}
+
+/* WRITING */
+.writing-list{display:flex;flex-direction:column;gap:.9rem;}
+.writing-item{border:0.5px solid var(--border);border-radius:12px;padding:1.3rem 1.6rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;transition:border-color .2s,transform .2s;cursor:pointer;}
+.writing-item:hover{border-color:#aaa;transform:translateX(4px);}
+.writing-title{font-size:15px;font-weight:500;margin-bottom:.25rem;}
+.writing-desc{font-size:13px;color:var(--muted);}
+.arr{font-size:18px;color:var(--muted);flex-shrink:0;}
+
+/* CERTIFICATIONS */
+.cert-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;}
+.cert-card{border:0.5px solid var(--border);border-radius:12px;padding:1.2rem 1.4rem;display:flex;align-items:start;gap:1rem;transition:border-color .2s;}
+.cert-card:hover{border-color:#aaa;}
+.cert-badge{width:34px;height:34px;border-radius:8px;background:var(--accent2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;color:var(--accent);font-weight:500;}
+.cert-name{font-size:14px;font-weight:500;margin-bottom:.2rem;}
+.cert-issuer{font-size:12px;color:var(--muted);}
+
+/* CONTACT */
+.contact-block{background:var(--bg2);border-radius:16px;border:0.5px solid var(--border);padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;}
+.contact-block h2{font-size:1.55rem;font-weight:400;letter-spacing:-.02em;max-width:360px;line-height:1.3;}
+.contact-links{display:flex;flex-direction:column;gap:.75rem;align-items:flex-end;}
+.contact-link{font-size:14px;color:var(--accent);border-bottom:0.5px solid var(--accent);padding-bottom:1px;}
+
+footer{max-width:920px;margin:0 auto;padding:2rem 2.5rem;display:flex;justify-content:space-between;border-top:0.5px solid var(--border);}
+footer p{font-size:12px;color:var(--muted);}
+
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.visible{opacity:1;transform:none;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+@keyframes slideUp{from{opacity:0;transform:translateY(40px);}to{opacity:1;transform:none;}}
+
+@media(max-width:700px){
+  nav{padding:.9rem 1.25rem;}
+  .nav-links{gap:.9rem;}
+  .wrap{padding:4.5rem 1.25rem 3rem;}
+  .about-grid{grid-template-columns:1fr;}
+  .skills-grid{grid-template-columns:1fr 1fr;}
+  .events-grid{grid-template-columns:1fr 1fr;}
+  .cert-grid{grid-template-columns:1fr;}
+  .contact-block{flex-direction:column;text-align:center;}
+  .contact-links{align-items:center;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Gauri Sachan</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#education">Education</a>
+    <a href="#events">Events</a>
+    <a href="#writing">Writing</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="mailto:gigasachan@gmail.com" class="nav-cta">Get in touch</a>
+</nav>
+
+<!-- HERO -->
+<div class="wrap" id="hero" style="min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-top:7rem;">
+  <p class="hero-eyebrow">Portfolio — 2026</p>
+  <h1 class="hero-title">
+    <span class="line"><span>Hi, I'm Gauri —</span></span>
+    <span class="line"><span>
+      <span class="tw-wrap">a&nbsp;product&nbsp;<span id="tw">marketer</span><span class="cur"></span></span>
+    </span></span>
+  </h1>
+  <p class="hero-sub">Five years at the intersection of users, data, and product strategy — helping teams decide what to build, how to position it, and how to measure impact.</p>
+  <div class="hero-btns">
+    <button class="btn-p" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">See my work</button>
+    <a href="https://www.linkedin.com/in/gaurisachan/" class="btn-g">LinkedIn ↗</a>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<div class="wrap" id="about">
+  <p class="section-label reveal">About</p>
+  <div class="about-grid">
+    <div class="about-img reveal"><span>Your photo here</span></div>
+    <div class="about-text">
+      <h2 class="reveal">Marketing + systems thinking, end to end.</h2>
+      <p class="reveal">I'm Gauri Sachan, a Masters in Engineering Management student at Syracuse University (GO ORANGE!), with five years of experience in product marketing, growth, and analytics for B2B and digital products. I've gravitated toward roles at the intersection of users, data, and product strategy — helping teams decide what to build, how to position it, and how to measure impact.</p>
+      <p class="reveal">My approach: clarify the goal, understand the user, design experiments, and measure what actually moved the needle.</p>
+      <div class="tag-row reveal">
+        <span class="tag">B2B SaaS</span>
+        <span class="tag">Growth</span>
+        <span class="tag">Analytics</span>
+        <span class="tag">Product Marketing</span>
+        <span class="tag">Lean Six Sigma</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<div class="wrap" id="skills">
+  <p class="section-label reveal">Skills</p>
+  <div class="skills-grid">
+    <div class="skill-card reveal">
+      <h3>Marketing &amp; Growth</h3>
+      <div class="stags"><span class="stag">Product marketing</span><span class="stag">Growth marketing</span><span class="stag">Lifecycle</span><span class="stag">GTM strategy</span><span class="stag">A/B testing</span></div>
+    </div>
+    <div class="skill-card reveal">
+      <h3>Performance &amp; Analytics</h3>
+      <div class="stags"><span class="stag">Meta Ads</span><span class="stag">Google Ads</span><span class="stag">UTM tracking</span><span class="stag">Funnel analysis</span><span class="stag">Dashboarding</span></div>
+    </div>
+    <div class="skill-card reveal">
+      <h3>Data &amp; Tools</h3>
+      <div class="stags"><span class="stag">Excel (advanced)</span><span class="stag">SQL</span><span class="stag">Google Analytics</span><span class="stag">Data viz</span></div>
+    </div>
+    <div class="skill-card reveal">
+      <h3>Management &amp; Process</h3>
+      <div class="stags"><span class="stag">Project management</span><span class="stag">Lean Six Sigma</span><span class="stag">Ops improvement</span><span class="stag">Roadmaps</span></div>
+    </div>
+    <div class="skill-card reveal">
+      <h3>Product &amp; Business</h3>
+      <div class="stags"><span class="stag">User research</span><span class="stag">Journey mapping</span><span class="stag">Problem framing</span><span class="stag">Value proposition</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- EDUCATION -->
+<div class="wrap" id="education">
+  <p class="section-label reveal">Education</p>
+  <div class="edu-list">
+    <div class="edu-item reveal">
+      <div>
+        <p class="edu-school">Syracuse University</p>
+        <p class="edu-deg">Master of Science, Engineering Management</p>
+        <p class="edu-detail">College of Engineering &amp; Computer Science</p>
+      </div>
+      <span class="edu-year">2024 – 2026</span>
+    </div>
+    <div class="edu-item reveal">
+      <div>
+        <p class="edu-school">[ Your undergraduate university ]</p>
+        <p class="edu-deg">[ Degree &amp; major ]</p>
+        <p class="edu-detail">[ Honours / relevant detail ]</p>
+      </div>
+      <span class="edu-year">[ Years ]</span>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- EVENTS -->
+<div class="wrap" id="events">
+  <p class="section-label reveal">Community &amp; Events</p>
+  <div class="events-grid">
+
+    <div class="event-card reveal">
+      <div class="event-placeholder" style="background:#d6d4f0;">
+        <span style="font-size:12px;color:#7b78c0;">Upload your photo</span>
+      </div>
+      <div class="event-overlay">
+        <p class="event-role">Panelist</p>
+        <p class="event-title">Panel Discussion — [ Topic / Event name ]</p>
+        <p class="event-date">[ Month Year ] · Syracuse University</p>
+      </div>
+    </div>
+
+    <div class="event-card reveal">
+      <div class="event-placeholder" style="background:#c9dff5;">
+        <span style="font-size:12px;color:#4a7fbf;">Upload your photo</span>
+      </div>
+      <div class="event-overlay">
+        <p class="event-role">Panelist</p>
+        <p class="event-title">Panel Discussion — [ Topic / Event name ]</p>
+        <p class="event-date">[ Month Year ] · Syracuse University</p>
+      </div>
+    </div>
+
+    <div class="event-card reveal">
+      <div class="event-placeholder" style="background:#f5e4c9;">
+        <span style="font-size:12px;color:#b87d35;">Upload your photo</span>
+      </div>
+      <div class="event-overlay">
+        <p class="event-role">Host &amp; MC</p>
+        <p class="event-title">Thanksgiving Celebration 2024</p>
+        <p class="event-date">November 2024 · Syracuse University</p>
+      </div>
+    </div>
+
+    <div class="event-card reveal" style="grid-column:1 / -1;aspect-ratio:16/6;">
+      <div class="event-placeholder" style="background:#d4ede3;width:100%;height:100%;">
+        <span style="font-size:12px;color:#3d8c65;">Upload your photo</span>
+      </div>
+      <div class="event-overlay">
+        <p class="event-role">Facilitator</p>
+        <p class="event-title">English Conversation Groups — Building confidence &amp; cultural fluency for international students</p>
+        <p class="event-date">Ongoing · Syracuse University</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- WRITING -->
+<div class="wrap" id="writing">
+  <p class="section-label reveal">Writing</p>
+  <div class="writing-list">
+    <div class="writing-item reveal">
+      <div>
+        <p class="writing-title">[ Article or post title ]</p>
+        <p class="writing-desc">[ Short description or publication name ]</p>
+      </div>
+      <span class="arr">→</span>
+    </div>
+    <div class="writing-item reveal">
+      <div>
+        <p class="writing-title">[ Article or post title ]</p>
+        <p class="writing-desc">[ Short description or publication name ]</p>
+      </div>
+      <span class="arr">→</span>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CERTIFICATIONS -->
+<div class="wrap" id="certifications">
+  <p class="section-label reveal">Certifications</p>
+  <div class="cert-grid">
+    <div class="cert-card reveal">
+      <div class="cert-badge">L6σ</div>
+      <div><p class="cert-name">Lean Six Sigma</p><p class="cert-issuer">[ Issuing body ] · [ Year ]</p></div>
+    </div>
+    <div class="cert-card reveal">
+      <div class="cert-badge">◆</div>
+      <div><p class="cert-name">[ Certification ]</p><p class="cert-issuer">[ Issuing body ] · [ Year ]</p></div>
+    </div>
+    <div class="cert-card reveal">
+      <div class="cert-badge">◆</div>
+      <div><p class="cert-name">[ Certification ]</p><p class="cert-issuer">[ Issuing body ] · [ Year ]</p></div>
+    </div>
+    <div class="cert-card reveal">
+      <div class="cert-badge">◆</div>
+      <div><p class="cert-name">[ Certification ]</p><p class="cert-issuer">[ Issuing body ] · [ Year ]</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<div class="wrap" id="contact">
+  <div class="contact-block reveal">
+    <h2>Let's work on something together.</h2>
+    <div class="contact-links">
+      <a href="mailto:gigasachan@gmail.com" class="contact-link">gigasachan@gmail.com</a>
+      <a href="https://www.linkedin.com/in/gaurisachan/" class="contact-link">linkedin.com/in/gaurisachan</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>Gauri Sachan © 2026</p>
+  <p>Syracuse, NY</p>
+</footer>
+
+<script>
+const words=['marketer','manager'];
+let wi=0,ci=0,del=false;
+const el=document.getElementById('tw');
+function type(){
+  const w=words[wi];
+  if(!del){el.textContent=w.slice(0,++ci);if(ci===w.length){setTimeout(()=>{del=true;},1400);setTimeout(type,60);return;}}
+  else{el.textContent=w.slice(0,--ci);if(ci===0){del=false;wi=(wi+1)%words.length;}}
+  setTimeout(type,del?45:80);
+}
+setTimeout(type,1600);
+
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(e=>obs.observe(e));
+
+const links=document.querySelectorAll('.nav-links a');
+const secs=document.querySelectorAll('[id]:not(body)');
+const spy=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));const a=document.querySelector(`.nav-links a[href="#${e.target.id}"]`);if(a)a.classList.add('active');}});},{threshold:.35});
+secs.forEach(s=>spy.observe(s));
+</script>
+</body>
+</html>
