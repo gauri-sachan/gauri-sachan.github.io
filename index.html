@@ -376,6 +376,16 @@ function type(){
 }
 setTimeout(type,1600);
 
+const track=document.getElementById('writingTrack');
+let cur=0;
+function getMax(){return track.querySelectorAll('.writing-item').length-2;}
+function slide(){
+  const w=track.querySelectorAll('.writing-item')[0].getBoundingClientRect().width+16;
+  track.style.transform=`translateX(-${cur*w}px)`;
+}
+document.getElementById('nextBtn').addEventListener('click',()=>{if(cur<getMax()){cur++;slide();}});
+document.getElementById('prevBtn').addEventListener('click',()=>{if(cur>0){cur--;slide();}});
+
 const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:.1});
 document.querySelectorAll('.reveal').forEach(e=>obs.observe(e));
 
