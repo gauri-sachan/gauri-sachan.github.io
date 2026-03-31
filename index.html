@@ -81,22 +81,27 @@ h1.hero-title{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:400;line-height:1.1
 .event-title{font-size:14px;font-weight:500;color:#fff;line-height:1.35;}
 .event-date{font-size:12px;color:rgba(255,255,255,.55);margin-top:.3rem;}
 
-/* WRITING */
-.writing-list{display:flex;flex-direction:column;gap:.9rem;}
-.writing-item{border:0.5px solid var(--border);border-radius:12px;padding:1.3rem 1.6rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;transition:border-color .2s,transform .2s;}
-.writing-item:hover{border-color:#aaa;transform:translateX(4px);}
+/* WRITING CAROUSEL */
+.carousel-wrap{position:relative;}
+.carousel-track-outer{overflow:hidden;border-radius:12px;}
+.carousel-track{display:flex;transition:transform .4s ease;gap:1rem;}
+.writing-item{min-width:calc(50% - .5rem);border:0.5px solid var(--border);border-radius:12px;padding:1.3rem 1.6rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;transition:border-color .2s;text-decoration:none;}
+.writing-item:hover{border-color:#aaa;}
 .writing-title{font-size:14px;font-weight:500;margin-bottom:.25rem;color:var(--text);}
-.writing-desc{font-size:13px;color:var(--muted);}
+.writing-desc{font-size:13px;color:var(--muted);line-height:1.5;}
 .writing-pub{font-size:11.5px;color:var(--accent);margin-top:.3rem;font-weight:500;}
 .arr{font-size:18px;color:var(--muted);flex-shrink:0;}
+.carousel-btns{display:flex;gap:.6rem;justify-content:flex-end;margin-top:1rem;}
+.carousel-btn{width:36px;height:36px;border-radius:50%;border:0.5px solid var(--border);background:var(--bg);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:border-color .2s,background .2s;}
+.carousel-btn:hover{border-color:var(--text);background:var(--bg2);}
 
 /* CERTIFICATIONS */
-.cert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;align-items:start;}
-.cert-card{border:0.5px solid var(--border);border-radius:12px;padding:1.25rem 1.4rem;display:flex;flex-direction:column;align-items:flex-start;gap:.75rem;transition:border-color .2s,transform .25s;cursor:default;}
-.cert-card:hover{border-color:#aaa;transform:translateY(-5px);}
-.cert-badge{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;letter-spacing:.02em;}
-.cert-name{font-size:13.5px;font-weight:500;line-height:1.4;color:var(--text);}
-.cert-date{font-size:12px;color:var(--muted);margin-top:.1rem;}
+.cert-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;align-items:start;}
+.cert-card{border:0.5px solid var(--border);border-radius:14px;padding:1.5rem 1rem 1rem;display:flex;flex-direction:column;align-items:center;gap:.85rem;transition:box-shadow .25s,transform .25s;cursor:default;background:var(--bg);text-align:center;}
+.cert-card:hover{transform:translateY(-8px);box-shadow:0 12px 32px rgba(0,0,0,0.1);}
+.cert-logo{width:72px;height:72px;border-radius:12px;object-fit:contain;}
+.cert-name{font-size:12px;font-weight:500;line-height:1.4;color:var(--text);}
+.cert-date{font-size:11px;color:var(--muted);}
 
 /* CONTACT */
 .contact-block{background:var(--bg2);border-radius:16px;border:0.5px solid var(--border);padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;}
@@ -277,55 +282,39 @@ footer p{font-size:12px;color:var(--muted);}
 <!-- WRITING -->
 <div class="wrap" id="writing">
   <p class="section-label reveal">Writing</p>
-  <div class="writing-list">
-    <a href="https://tallysolutions.com/us/business-guides/intersection-of-social-media-and-retail-sales/" target="_blank" class="writing-item reveal">
-      <div>
-        <p class="writing-title">The Intersection of Social Media and Retail Sales</p>
-        <p class="writing-desc">Social commerce strategies to boost brand visibility, engagement, and profitability</p>
-        <p class="writing-pub">Tally Solutions</p>
+  <div class="carousel-wrap reveal">
+    <div class="carousel-track-outer">
+      <div class="carousel-track" id="writingTrack">
+        <a href="https://tallysolutions.com/us/business-guides/intersection-of-social-media-and-retail-sales/" target="_blank" class="writing-item">
+          <div><p class="writing-title">The Intersection of Social Media and Retail Sales</p><p class="writing-desc">Social commerce strategies to boost brand visibility, engagement, and profitability</p><p class="writing-pub">Tally Solutions</p></div>
+          <span class="arr">→</span>
+        </a>
+        <a href="https://tallysolutions.com/us/accounting/accounting-practices-for-better-financial-management/" target="_blank" class="writing-item">
+          <div><p class="writing-title">5 Crucial Accounting Practices for Better Financial Management in 2024</p><p class="writing-desc">Key practices to overcome financial challenges and enhance business management</p><p class="writing-pub">Tally Solutions</p></div>
+          <span class="arr">→</span>
+        </a>
+        <a href="https://tallysolutions.com/us/inventory/inventory-management-strategies-for-small-businesses-usa/" target="_blank" class="writing-item">
+          <div><p class="writing-title">5 Effective Inventory Management Strategies for Small Businesses in the US</p><p class="writing-desc">Key tips to manage inventory and increase visibility for USA-based small businesses</p><p class="writing-pub">Tally Solutions</p></div>
+          <span class="arr">→</span>
+        </a>
+        <a href="https://tallysolutions.com/us/inventory/optimizing-inventory-management-with-business-reports/" target="_blank" class="writing-item">
+          <div><p class="writing-title">Nine Ways Business Reports Help You Optimize Inventory Management</p><p class="writing-desc">How business reports can improve and optimize inventory management</p><p class="writing-pub">Tally Solutions</p></div>
+          <span class="arr">→</span>
+        </a>
+        <a href="https://tallysolutions.com/us/inventory/inventory-management-kpis-metrics/" target="_blank" class="writing-item">
+          <div><p class="writing-title">Top 4 Inventory Management KPIs to Track for Business Efficiency</p><p class="writing-desc">Vital KPIs for sales, receiving, and fulfilment — guiding demand planning and cost control</p><p class="writing-pub">Tally Solutions</p></div>
+          <span class="arr">→</span>
+        </a>
+        <a href="https://tallysolutions.com/us/business-guides/generative-ai-for-business/" target="_blank" class="writing-item">
+          <div><p class="writing-title">4 Ways Generative AI Can Help Businesses Sell Smartly</p><p class="writing-desc">How Gen AI revolutionizes sales through personalized content and automated forecasting</p><p class="writing-pub">Tally Solutions</p></div>
+          <span class="arr">→</span>
+        </a>
       </div>
-      <span class="arr">→</span>
-    </a>
-    <a href="https://tallysolutions.com/us/accounting/accounting-practices-for-better-financial-management/" target="_blank" class="writing-item reveal">
-      <div>
-        <p class="writing-title">5 Crucial Accounting Practices for Better Financial Management in 2024</p>
-        <p class="writing-desc">Key practices to overcome financial challenges and enhance business management</p>
-        <p class="writing-pub">Tally Solutions</p>
-      </div>
-      <span class="arr">→</span>
-    </a>
-    <a href="https://tallysolutions.com/us/inventory/inventory-management-strategies-for-small-businesses-usa/" target="_blank" class="writing-item reveal">
-      <div>
-        <p class="writing-title">5 Effective Inventory Management Strategies for Small Businesses in the US</p>
-        <p class="writing-desc">Key tips to manage inventory and increase visibility for USA-based small businesses</p>
-        <p class="writing-pub">Tally Solutions</p>
-      </div>
-      <span class="arr">→</span>
-    </a>
-    <a href="https://tallysolutions.com/us/inventory/optimizing-inventory-management-with-business-reports/" target="_blank" class="writing-item reveal">
-      <div>
-        <p class="writing-title">Nine Ways Business Reports Help You Optimize Inventory Management</p>
-        <p class="writing-desc">How business reports can improve and optimize inventory management</p>
-        <p class="writing-pub">Tally Solutions</p>
-      </div>
-      <span class="arr">→</span>
-    </a>
-    <a href="https://tallysolutions.com/us/inventory/inventory-management-kpis-metrics/" target="_blank" class="writing-item reveal">
-      <div>
-        <p class="writing-title">Top 4 Inventory Management KPIs to Track for Business Efficiency</p>
-        <p class="writing-desc">Vital KPIs for sales, receiving, and fulfilment — guiding demand planning and cost control</p>
-        <p class="writing-pub">Tally Solutions</p>
-      </div>
-      <span class="arr">→</span>
-    </a>
-    <a href="https://tallysolutions.com/us/business-guides/generative-ai-for-business/" target="_blank" class="writing-item reveal">
-      <div>
-        <p class="writing-title">4 Ways Generative AI Can Help Businesses Sell Smartly</p>
-        <p class="writing-desc">How Gen AI revolutionizes sales through personalized content and automated forecasting</p>
-        <p class="writing-pub">Tally Solutions</p>
-      </div>
-      <span class="arr">→</span>
-    </a>
+    </div>
+    <div class="carousel-btns">
+      <button class="carousel-btn" id="prevBtn">←</button>
+      <button class="carousel-btn" id="nextBtn">→</button>
+    </div>
   </div>
 </div>
 
@@ -336,39 +325,24 @@ footer p{font-size:12px;color:var(--muted);}
   <p class="section-label reveal">Certifications</p>
   <div class="cert-grid">
     <div class="cert-card reveal">
-      <img src="sa-cspo-300.png" alt="CSPO" style="width:44px;height:44px;object-fit:contain;border-radius:6px;"/>
-      <div>
-        <p class="cert-name">Certified Scrum Product Owner</p>
-        <p class="cert-date">Issued Mar 2025</p>
-      </div>
+      <img src="sa-cspo-300.png" alt="CSPO" class="cert-logo"/>
+      <div><p class="cert-name">Certified Scrum Product Owner</p><p class="cert-date">Mar 2025</p></div>
     </div>
     <div class="cert-card reveal">
-      <img src="PMI_GenAIforPM.png" alt="PMI" style="width:44px;height:44px;object-fit:contain;border-radius:6px;"/>
-      <div>
-        <p class="cert-name">Practical Application of Gen AI for Project Managers</p>
-        <p class="cert-date">PMI · Issued Feb 2026</p>
-      </div>
+      <img src="PMI_GenAIforPM.png" alt="PMI" class="cert-logo"/>
+      <div><p class="cert-name">Practical Application of Gen AI for Project Managers</p><p class="cert-date">PMI · Feb 2026</p></div>
     </div>
     <div class="cert-card reveal">
-      <img src="semrush.png" alt="Semrush" style="width:44px;height:44px;object-fit:contain;border-radius:6px;"/>
-      <div>
-        <p class="cert-name">AI Visibility Essentials in SEO</p>
-        <p class="cert-date">Issued Feb 2026</p>
-      </div>
+      <img src="semrush.png" alt="Semrush" class="cert-logo"/>
+      <div><p class="cert-name">AI Visibility Essentials in SEO</p><p class="cert-date">Semrush · Feb 2026</p></div>
     </div>
     <div class="cert-card reveal">
-      <img src="whitman.png" alt="Whitman" style="width:44px;height:44px;object-fit:contain;border-radius:6px;"/>
-      <div>
-        <p class="cert-name">Lean Six Sigma Green Belt — Level II</p>
-        <p class="cert-date">Issued Dec 2025</p>
-      </div>
+      <img src="whitman.png" alt="Whitman" class="cert-logo"/>
+      <div><p class="cert-name">Lean Six Sigma Green Belt — Level II</p><p class="cert-date">Dec 2025</p></div>
     </div>
     <div class="cert-card reveal">
-      <img src="SU_LOGO.jpg" alt="Syracuse University" style="width:44px;height:44px;object-fit:contain;border-radius:6px;"/>
-      <div>
-        <p class="cert-name">Welcome Ambassador — International Orientation Leader</p>
-        <p class="cert-date">Syracuse University · Issued Aug 2025</p>
-      </div>
+      <img src="SU_LOGO.jpg" alt="Syracuse University" class="cert-logo"/>
+      <div><p class="cert-name">Welcome Ambassador — International Orientation Leader</p><p class="cert-date">Syracuse University · Aug 2025</p></div>
     </div>
   </div>
 </div>
