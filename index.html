@@ -112,6 +112,10 @@ h1.hero-title{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:400;line-height:1.1
 footer{max-width:920px;margin:0 auto;padding:2rem 2.5rem;border-top:0.5px solid var(--border);}
 footer p{font-size:12px;color:var(--muted);}
 
+.back-top{position:fixed;bottom:2rem;right:2rem;width:44px;height:44px;border-radius:50%;background:var(--text);color:var(--bg);border:none;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transform:translateY(12px);transition:opacity .3s,transform .3s;z-index:200;}
+.back-top.visible{opacity:1;pointer-events:all;transform:translateY(0);}
+.back-top:hover{opacity:.8;}
+
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease;}
 .reveal.visible{opacity:1;transform:none;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
@@ -360,6 +364,8 @@ footer p{font-size:12px;color:var(--muted);}
   </div>
 </div>
 
+<button class="back-top" id="backTop" title="Back to top">↑</button>
+
 <footer>
   <p>Gauri Sachan © 2026</p>
 </footer>
@@ -376,7 +382,13 @@ function type(){
 }
 setTimeout(type,1600);
 
-const track=document.getElementById('writingTrack');
+const backTop=document.getElementById('backTop');
+const skillsSec=document.getElementById('skills');
+window.addEventListener('scroll',()=>{
+  const trigger=skillsSec.getBoundingClientRect().top+window.scrollY;
+  backTop.classList.toggle('visible',window.scrollY>trigger);
+});
+backTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
 let cur=0;
 function getMax(){return track.querySelectorAll('.writing-item').length-2;}
 function slide(){
