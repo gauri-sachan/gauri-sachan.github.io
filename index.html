@@ -100,7 +100,8 @@ h1.hero-title{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:400;line-height:1.1
 
 /* WRITING CAROUSEL */
 .carousel-wrap{position:relative;}
-.carousel-track-outer{overflow:hidden;border-radius:12px;}
+.carousel-track-outer{overflow-x:scroll;border-radius:12px;scroll-behavior:smooth;scrollbar-width:none;}
+.carousel-track-outer::-webkit-scrollbar{display:none;}
 .carousel-track{display:flex;transition:transform .4s ease;gap:1rem;}
 .writing-item{min-width:calc(50% - .5rem);border:0.5px solid var(--border);border-radius:12px;padding:1.3rem 1.6rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;transition:border-color .2s;text-decoration:none;}
 .writing-item:hover{border-color:#aaa;}
@@ -239,7 +240,7 @@ footer p{font-size:12px;color:var(--muted);}
   <p class="section-label reveal">Education</p>
   <div class="edu-list">
     <div class="edu-item reveal">
-      <img src="SU_LOGO.jpg" alt="Syracuse University" style="width:72px;height:72px;object-fit:cover;border-radius:50%;flex-shrink:0;border:1.5px solid #f5c38a;"/>
+      <img src="SU_LOGO.jpg" alt="Syracuse University" style="width:52px;height:52px;object-fit:contain;flex-shrink:0;"/>
       <div class="edu-body">
         <p class="edu-school">Syracuse University</p>
         <p class="edu-deg">Master of Science, Engineering Management</p>
@@ -248,7 +249,7 @@ footer p{font-size:12px;color:var(--muted);}
       <span class="edu-year">2024 – 2026</span>
     </div>
     <div class="edu-item reveal">
-      <img src="kiit_logo.png" alt="KIIT" style="width:72px;height:72px;object-fit:cover;border-radius:50%;flex-shrink:0;border:1.5px solid #7ed87e;"/>
+      <img src="kiit_logo.png" alt="KIIT" style="width:52px;height:52px;object-fit:contain;flex-shrink:0;"/>
       <div class="edu-body">
         <p class="edu-school">Kalinga Institute of Industrial Technology</p>
         <p class="edu-deg">Bachelor of Technology, Computer Science &amp; Systems Engineering</p>
