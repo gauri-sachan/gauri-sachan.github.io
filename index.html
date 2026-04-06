@@ -5,11 +5,14 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-:root{--bg:#fafaf8;--bg2:#f2f0eb;--text:#1a1a18;--muted:#6b6a65;--accent:#3b3a8f;--accent2:#e8e7ff;--border:#e0deda;--ff:'Inter',system-ui,sans-serif;}
-body{font-family:var(--ff);background:var(--bg);color:var(--text);overflow-x:hidden;scroll-behavior:smooth;}
+:root{--text:#1a1a18;--muted:#5a5955;--accent:#3b3a8f;--accent2:#e8e7ff;--border:rgba(255,255,255,0.7);--glass:rgba(255,255,255,0.82);--ff:'Inter',system-ui,sans-serif;}
+body{font-family:var(--ff);color:var(--text);overflow-x:hidden;scroll-behavior:smooth;}
+body::before{content:'';position:fixed;inset:0;z-index:-1;background:linear-gradient(135deg,#7c6af7,#c4873a,#2a8c7a,#b34d8a,#7c6af7,#c4873a);background-size:400% 400%;animation:gradFlow 18s ease infinite;}
+@keyframes gradFlow{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
 a{text-decoration:none;color:inherit;}
 
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:.9rem 2.5rem;background:rgba(250,250,248,0.93);backdrop-filter:blur(10px);border-bottom:0.5px solid var(--border);}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:.9rem 2.5rem;background:rgba(255,255,255,0.75);backdrop-filter:blur(16px);border-bottom:0.5px solid rgba(200,195,220,0.4);}
 .nav-logo{font-size:15px;font-weight:500;flex-shrink:0;}
 .nav-links{display:flex;gap:1.4rem;}
 .nav-links a{font-size:12.5px;color:var(--muted);transition:color .2s;padding:4px 0;position:relative;}
@@ -17,16 +20,22 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .nav-links a:hover{color:var(--text);}
 .nav-links a:hover::after,.nav-links a.active::after{width:100%;}
 .nav-links a.active{color:var(--text);}
-.nav-cta{font-size:12.5px;font-weight:500;background:var(--text);color:var(--bg);padding:7px 15px;border-radius:20px;transition:opacity .2s;flex-shrink:0;}
+.nav-cta{font-size:12.5px;font-weight:500;background:var(--text);color:#fff;padding:7px 15px;border-radius:20px;transition:opacity .2s;flex-shrink:0;}
 .nav-cta:hover{opacity:.8;}
 
-.wrap{padding:5.5rem 2.5rem 4rem;max-width:920px;margin:0 auto;}
-.section-label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:1.25rem;}
-.divider{height:0.5px;background:var(--border);max-width:920px;margin:0 auto;}
+/* LAYOUT */
+.wrap{padding:5.5rem 2.5rem 4rem;max-width:940px;margin:0 auto;}
+.glass-panel{background:var(--glass);backdrop-filter:blur(18px);border-radius:20px;border:0.5px solid var(--border);padding:2.5rem;}
+
+/* SECTION LABELS */
+.section-label{font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1.75rem;display:flex;align-items:center;gap:.65rem;}
+.section-label::before{content:'';display:inline-block;width:22px;height:2px;background:var(--accent);border-radius:2px;flex-shrink:0;}
+
+.divider{height:0.5px;background:rgba(180,175,210,0.35);max-width:940px;margin:0 auto;}
 
 /* HERO */
-#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-top:7rem;padding-bottom:3rem;}
-h1.hero-title{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:400;line-height:1.15;letter-spacing:-.02em;margin-bottom:1.5rem;}
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:7rem 2.5rem 3rem;max-width:940px;margin:0 auto;}
+h1.hero-title{font-size:clamp(2.4rem,5.5vw,4rem);font-weight:400;line-height:1.15;letter-spacing:-.02em;margin-bottom:1.5rem;}
 .line{display:block;overflow:hidden;padding-bottom:4px;}
 .line span{display:inline-block;opacity:0;transform:translateY(40px);animation:slideUp .7s forwards;}
 .line:nth-child(1) span{animation-delay:.3s;}
@@ -35,104 +44,119 @@ h1.hero-title{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:400;line-height:1.1
 #tw{font-style:italic;}
 .cur{display:inline-block;width:2px;height:.85em;background:var(--accent);vertical-align:middle;margin-left:1px;animation:blink 1s step-end infinite;}
 @keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
-.hero-sub{font-size:16px;color:var(--muted);max-width:520px;line-height:1.75;margin-bottom:2.5rem;opacity:0;animation:fadeUp .6s .9s forwards;}
+.hero-sub{font-size:16px;color:var(--muted);max-width:540px;line-height:1.8;margin-bottom:2.5rem;opacity:0;animation:fadeUp .6s .9s forwards;}
 .hero-btns{display:flex;gap:1rem;opacity:0;animation:fadeUp .6s 1.1s forwards;flex-wrap:wrap;}
-.btn-filled{background:var(--accent);color:#fff;padding:11px 24px;border-radius:24px;font-size:14px;font-weight:500;transition:opacity .2s;border:none;cursor:pointer;}
+.btn-filled{background:var(--accent);color:#fff;padding:11px 24px;border-radius:24px;font-size:14px;font-weight:500;transition:opacity .2s;border:none;cursor:pointer;display:inline-block;}
 .btn-filled:hover{opacity:.85;}
-.btn-email{background:var(--text);color:var(--bg);padding:11px 24px;border-radius:24px;font-size:14px;font-weight:500;transition:opacity .2s;}
+.btn-email{background:var(--text);color:#fff;padding:11px 24px;border-radius:24px;font-size:14px;font-weight:500;transition:opacity .2s;display:inline-block;}
 .btn-email:hover{opacity:.8;}
-.btn-g{border:0.5px solid var(--border);padding:11px 24px;border-radius:24px;font-size:14px;color:var(--muted);transition:border-color .2s,color .2s;background:none;cursor:pointer;}
-.btn-g:hover{border-color:var(--text);color:var(--text);}
 
 /* ABOUT */
-.about-grid{display:grid;grid-template-columns:220px 1fr;gap:3rem;align-items:start;}
-.about-img{aspect-ratio:3/4;background:var(--bg2);border-radius:12px;border:0.5px solid var(--border);overflow:hidden;}
-.about-text h2{font-size:1.55rem;font-weight:400;line-height:1.3;letter-spacing:-.02em;margin-bottom:1.2rem;}
-.about-text p{font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:1rem;}
-.tag-row{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem;}
-.tag{font-size:12px;padding:5px 12px;border-radius:20px;background:var(--accent2);color:var(--accent);font-weight:500;}
+.about-grid{display:grid;grid-template-columns:210px 1fr;gap:3rem;align-items:start;}
+.about-img{aspect-ratio:3/4;background:rgba(200,195,220,0.3);border-radius:14px;border:0.5px solid var(--border);overflow:hidden;}
+.about-text h2{font-size:1.6rem;font-weight:400;line-height:1.3;letter-spacing:-.02em;margin-bottom:1.2rem;}
+.about-text p{font-size:15px;color:var(--muted);line-height:1.85;margin-bottom:1rem;}
+.tag-row{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem;width:100%;}
+.tag{font-size:12px;padding:5px 12px;border-radius:20px;background:rgba(59,58,143,0.1);color:var(--accent);font-weight:500;}
 
 /* SKILLS */
 .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;align-items:start;}
-.skill-card{background:var(--bg);border:0.5px solid var(--border);border-radius:12px;padding:1.2rem 1.4rem;transition:border-color .2s,transform .2s;}
-.skill-card:hover{border-color:#aaa;transform:translateY(-3px);}
-.skill-card h3{font-size:13px;font-weight:500;margin-bottom:.85rem;}
+.skill-card{background:rgba(255,255,255,0.9);border:0.5px solid var(--border);border-radius:14px;padding:1.25rem 1.4rem;transition:transform .2s,box-shadow .2s;border-top-width:3px;}
+.skill-card:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(59,58,143,0.1);}
+.skill-card:nth-child(1){border-top-color:#7c6af7;}
+.skill-card:nth-child(2){border-top-color:#3b82f6;}
+.skill-card:nth-child(3){border-top-color:#0ea5a0;}
+.skill-card:nth-child(4){border-top-color:#d97706;}
+.skill-card:nth-child(5){border-top-color:#db2777;}
+.skill-card h3{font-size:13px;font-weight:600;margin-bottom:.9rem;color:var(--text);}
 .stags{display:flex;flex-wrap:wrap;gap:.4rem;}
-.stag{font-size:11.5px;padding:4px 10px;border-radius:16px;background:var(--bg2);color:var(--muted);}
+.stag{font-size:11.5px;padding:4px 10px;border-radius:16px;background:rgba(240,238,250,0.9);color:var(--muted);}
 
 /* EDUCATION */
 .edu-list{display:flex;flex-direction:column;gap:1.25rem;}
-.edu-item{border:0.5px solid var(--border);border-radius:12px;padding:1.4rem 1.75rem;display:flex;align-items:center;gap:1.25rem;transition:border-color .2s;}
-.edu-item:hover{border-color:#aaa;}
-.edu-logo{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;flex-shrink:0;letter-spacing:.02em;}
+.edu-item{background:rgba(255,255,255,0.9);border:0.5px solid var(--border);border-radius:14px;padding:1.4rem 1.75rem;display:flex;align-items:center;gap:1.25rem;transition:transform .2s;}
+.edu-item:hover{transform:translateY(-2px);}
 .edu-body{flex:1;}
 .edu-school{font-size:15px;font-weight:500;margin-bottom:.3rem;}
 .edu-deg{font-size:14px;color:var(--muted);margin-bottom:.2rem;}
 .edu-detail{font-size:13px;color:var(--muted);}
 .edu-year{font-size:13px;color:var(--muted);white-space:nowrap;margin-left:auto;}
 
-/* LEADERSHIP */
-.events-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
-.event-card{border-radius:14px;overflow:hidden;position:relative;aspect-ratio:4/5;border:0.5px solid var(--border);cursor:pointer;transition:transform .25s;}
-.event-card:hover{transform:scale(1.02);}
-.event-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;}
-.event-overlay{position:absolute;bottom:0;left:0;right:0;padding:1.25rem 1.1rem 1rem;background:linear-gradient(to top,rgba(10,10,10,.82) 0%,rgba(10,10,10,.4) 60%,transparent 100%);}
-.event-role{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:.3rem;}
-.event-title{font-size:14px;font-weight:500;color:#fff;line-height:1.35;}
-.event-date{font-size:12px;color:rgba(255,255,255,.55);margin-top:.3rem;}
-
 /* PROJECTS */
 .projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;}
-.project-card{border:0.5px solid var(--border);border-radius:14px;padding:1.75rem;display:flex;flex-direction:column;gap:1rem;transition:border-color .2s,transform .2s;background:var(--bg);}
-.project-card:hover{border-color:#aaa;transform:translateY(-4px);}
+.project-card{background:rgba(255,255,255,0.9);border:0.5px solid var(--border);border-radius:14px;padding:1.75rem;display:flex;flex-direction:column;gap:1rem;transition:transform .2s,box-shadow .2s;}
+.project-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(59,58,143,0.12);}
 .project-header{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;}
 .project-name{font-size:17px;font-weight:500;letter-spacing:-.01em;line-height:1.3;}
 .project-role{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:500;white-space:nowrap;margin-top:3px;}
 .project-desc{font-size:14px;color:var(--muted);line-height:1.7;}
 .project-stats{display:flex;gap:1.25rem;flex-wrap:wrap;}
-.stat{display:flex;flex-direction:column;gap:2px;}
 .stat-val{font-size:15px;font-weight:500;color:var(--text);}
 .stat-label{font-size:11px;color:var(--muted);}
 .project-tags{display:flex;flex-wrap:wrap;gap:.4rem;}
-.project-tag{font-size:11.5px;padding:4px 10px;border-radius:16px;background:var(--bg2);color:var(--muted);}
+.project-tag{font-size:11.5px;padding:4px 10px;border-radius:16px;background:rgba(240,238,250,0.9);color:var(--muted);}
 .project-link{display:inline-flex;align-items:center;gap:.4rem;font-size:13px;font-weight:500;color:var(--accent);border-bottom:0.5px solid var(--accent);padding-bottom:1px;align-self:flex-start;transition:opacity .2s;}
 .project-link:hover{opacity:.7;}
 
 /* WRITING CAROUSEL */
 .carousel-wrap{position:relative;}
 .carousel-track-outer{overflow:hidden;border-radius:12px;}
-.carousel-track{display:flex;transition:transform .4s ease;gap:1rem;}
-.writing-item{flex-shrink:0;border:0.5px solid var(--border);border-radius:12px;padding:1.3rem 1.6rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;transition:border-color .2s;text-decoration:none;}
-.writing-item:hover{border-color:#aaa;}
+.carousel-track{display:flex;gap:1rem;transition:transform .6s cubic-bezier(.4,0,.2,1);}
+.writing-item{flex-shrink:0;background:rgba(255,255,255,0.9);border:0.5px solid var(--border);border-radius:12px;padding:1.3rem 1.6rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;transition:border-color .2s;text-decoration:none;}
+.writing-item:hover{border-color:rgba(59,58,143,0.3);}
 .writing-title{font-size:14px;font-weight:500;margin-bottom:.25rem;color:var(--text);}
 .writing-desc{font-size:13px;color:var(--muted);line-height:1.5;}
 .writing-pub{font-size:11.5px;color:var(--accent);margin-top:.3rem;font-weight:500;}
 .arr{font-size:18px;color:var(--muted);flex-shrink:0;}
-.carousel-btns{display:flex;gap:.6rem;justify-content:flex-end;margin-top:1rem;}
-.carousel-btn{width:36px;height:36px;border-radius:50%;border:0.5px solid var(--border);background:var(--bg);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:border-color .2s,background .2s;}
-.carousel-btn:hover{border-color:var(--text);background:var(--bg2);}
+.carousel-dots{display:flex;gap:.5rem;justify-content:center;margin-top:1rem;}
+.dot{width:6px;height:6px;border-radius:50%;background:rgba(59,58,143,0.25);transition:background .3s,transform .3s;cursor:pointer;}
+.dot.active{background:var(--accent);transform:scale(1.3);}
 
 /* CERTIFICATIONS */
-.cert-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;align-items:start;}
-.cert-card{border:0.5px solid var(--border);border-radius:14px;padding:1.5rem 1rem 1rem;display:flex;flex-direction:column;align-items:center;gap:.85rem;transition:box-shadow .25s,transform .25s;cursor:default;background:var(--bg);text-align:center;}
-.cert-card:hover{transform:translateY(-8px);box-shadow:0 12px 32px rgba(0,0,0,0.1);}
+.cert-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;}
+.cert-card{background:rgba(255,255,255,0.9);border:0.5px solid var(--border);border-radius:14px;padding:1.5rem 1rem 1rem;display:flex;flex-direction:column;align-items:center;gap:.85rem;transition:transform .25s,box-shadow .25s;text-align:center;}
+.cert-card:hover{transform:translateY(-8px);box-shadow:0 14px 36px rgba(59,58,143,0.13);}
 .cert-logo{width:72px;height:72px;border-radius:12px;object-fit:contain;}
 .cert-name{font-size:12px;font-weight:500;line-height:1.4;color:var(--text);}
 .cert-date{font-size:11px;color:var(--muted);}
 
 /* CONTACT */
-.contact-block{background:var(--bg2);border-radius:16px;border:0.5px solid var(--border);padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;}
-.contact-block h2{font-size:1.55rem;font-weight:400;letter-spacing:-.02em;max-width:360px;line-height:1.3;}
+.contact-block{background:rgba(59,58,143,0.07);border-radius:18px;border:0.5px solid rgba(59,58,143,0.2);padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;}
+.contact-block h2{font-size:1.6rem;font-weight:400;letter-spacing:-.02em;max-width:360px;line-height:1.3;}
 .contact-links{display:flex;flex-direction:column;gap:.75rem;align-items:flex-end;}
 .contact-link{font-size:14px;color:var(--accent);border-bottom:0.5px solid var(--accent);padding-bottom:1px;}
 
-footer{max-width:920px;margin:0 auto;padding:2rem 2.5rem;border-top:0.5px solid var(--border);}
-footer p{font-size:12px;color:var(--muted);}
-
-.back-top{position:fixed;bottom:2rem;right:2rem;width:44px;height:44px;border-radius:50%;background:var(--text);color:var(--bg);border:none;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transform:translateY(12px);transition:opacity .3s,transform .3s;z-index:200;}
+footer{max-width:940px;margin:0 auto;padding:2rem 2.5rem;border-top:0.5px solid rgba(255,255,255,0.2);}
+footer p{font-size:12px;color:rgba(255,255,255,0.7);}
+.contact-block h2{font-size:1.6rem;font-weight:400;letter-spacing:-.02em;max-width:360px;line-height:1.3;color:var(--text);}
+.contact-link{font-size:14px;color:rgba(255,255,255,0.85);border-bottom:0.5px solid rgba(255,255,255,0.5);padding-bottom:1px;transition:color .2s;}
+.contact-link:hover{color:#fff;}
+/* BACK TO TOP */
+.back-top{position:fixed;bottom:2rem;right:2rem;width:44px;height:44px;border-radius:50%;background:var(--text);color:#fff;border:none;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transform:translateY(12px);transition:opacity .3s,transform .3s;z-index:200;}
 .back-top.visible{opacity:1;pointer-events:all;transform:translateY(0);}
 .back-top:hover{opacity:.8;}
 
+/* RESUME BUTTON */
+.resume-float{position:fixed;bottom:5.5rem;right:2rem;z-index:200;background:var(--accent);color:#fff;border:none;cursor:pointer;font-size:13px;font-weight:500;padding:10px 18px;border-radius:24px;opacity:0;pointer-events:none;transform:translateY(12px);transition:opacity .3s,transform .3s;}
+.resume-float.visible{opacity:1;pointer-events:all;transform:translateY(0);}
+.resume-float:hover{opacity:.85;}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;z-index:300;background:rgba(20,18,40,0.5);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;}
+.modal-overlay.active{opacity:1;pointer-events:all;}
+.modal{background:#fff;border-radius:20px;padding:2.5rem;width:90%;max-width:400px;position:relative;transform:translateY(20px);transition:transform .3s;}
+.modal-overlay.active .modal{transform:translateY(0);}
+.modal-close{position:absolute;top:1rem;right:1.25rem;background:none;border:none;font-size:18px;cursor:pointer;color:var(--muted);}
+.modal h3{font-size:1.2rem;font-weight:500;margin-bottom:.5rem;}
+.modal p{font-size:14px;color:var(--muted);margin-bottom:1.5rem;line-height:1.6;}
+.modal input{width:100%;padding:10px 14px;border:0.5px solid #ddd;border-radius:10px;font-size:14px;margin-bottom:.85rem;font-family:var(--ff);outline:none;transition:border-color .2s;}
+.modal input:focus{border-color:var(--accent);}
+.modal-submit{width:100%;padding:11px;background:var(--accent);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:500;cursor:pointer;transition:opacity .2s;}
+.modal-submit:hover{opacity:.85;}
+.modal-success{display:none;text-align:center;padding:1rem 0;}
+.modal-success p{font-size:15px;color:var(--accent);font-weight:500;}
+
+/* REVEAL */
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease;}
 .reveal.visible{opacity:1;transform:none;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
@@ -141,13 +165,14 @@ footer p{font-size:12px;color:var(--muted);}
 @media(max-width:700px){
   nav{padding:.9rem 1.25rem;}
   .nav-links{gap:.9rem;}
-  .wrap{padding:4.5rem 1.25rem 3rem;}
+  .wrap{padding:4rem 1.25rem 3rem;}
+  #hero{padding:6rem 1.25rem 3rem;}
   .about-grid{grid-template-columns:1fr;}
   .skills-grid{grid-template-columns:1fr 1fr;}
-  .events-grid{grid-template-columns:1fr 1fr;}
   .cert-grid{grid-template-columns:1fr 1fr;}
   .contact-block{flex-direction:column;text-align:center;}
   .contact-links{align-items:center;}
+  .projects-grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -168,7 +193,7 @@ footer p{font-size:12px;color:var(--muted);}
 </nav>
 
 <!-- HERO -->
-<div class="wrap" id="hero" style="min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-top:7rem;">
+<div id="hero">
   <h1 class="hero-title">
     <span class="line"><span>Hi, I'm Gauri —</span></span>
     <span class="line"><span><span class="tw-wrap">a&nbsp;product&nbsp;<span id="tw">marketer</span><span class="cur"></span></span></span></span>
@@ -184,20 +209,22 @@ footer p{font-size:12px;color:var(--muted);}
 
 <!-- ABOUT -->
 <div class="wrap" id="about">
-  <p class="section-label reveal">About</p>
-  <div class="about-grid">
-    <div class="about-img reveal"><img src="Profile_Pic_About.jpg" alt="Gauri Sachan" style="width:100%;height:100%;object-fit:cover;"/></div>
-    <div class="about-text">
-      <h2 class="reveal">Marketing + systems thinking, end to end.</h2>
-      <p class="reveal">I'm Gauri Sachan, a Masters in Engineering Management student at Syracuse University (GO ORANGE!), with five years of experience in product marketing, growth, and analytics for B2B and digital products. I've gravitated toward roles at the intersection of users, data, and product strategy — helping teams decide what to build, how to position it, and how to measure impact.</p>
-      <p class="reveal">My approach: clarify the goal, understand the user, design experiments, and measure what actually moved the needle.</p>
-      <div class="tag-row reveal">
-        <span class="tag">B2B SaaS</span>
-        <span class="tag">Growth</span>
-        <span class="tag">Analytics</span>
-        <span class="tag">Product Marketing</span>
-        <span class="tag">Product Management</span>
-        <span class="tag">Lean Six Sigma</span>
+  <div class="glass-panel">
+    <p class="section-label reveal">About</p>
+    <div class="about-grid">
+      <div class="about-img reveal"><img src="Profile_Pic_About.jpg" alt="Gauri Sachan" style="width:100%;height:100%;object-fit:cover;"/></div>
+      <div class="about-text">
+        <h2 class="reveal">Marketing + systems thinking, end to end.</h2>
+        <p class="reveal">I'm Gauri Sachan, a Masters in Engineering Management student at Syracuse University (GO ORANGE!), with five years of experience in product marketing, growth, and analytics for B2B and digital products. I've gravitated toward roles at the intersection of users, data, and product strategy — helping teams decide what to build, how to position it, and how to measure impact.</p>
+        <p class="reveal">My approach: clarify the goal, understand the user, design experiments, and measure what actually moved the needle.</p>
+        <div class="tag-row reveal">
+          <span class="tag">B2B SaaS</span>
+          <span class="tag">Growth</span>
+          <span class="tag">Analytics</span>
+          <span class="tag">Product Marketing</span>
+          <span class="tag">Product Management</span>
+          <span class="tag">Lean Six Sigma</span>
+        </div>
       </div>
     </div>
   </div>
@@ -207,27 +234,29 @@ footer p{font-size:12px;color:var(--muted);}
 
 <!-- SKILLS -->
 <div class="wrap" id="skills">
-  <p class="section-label reveal">Skills</p>
-  <div class="skills-grid">
-    <div class="skill-card reveal">
-      <h3>Marketing &amp; Growth</h3>
-      <div class="stags"><span class="stag">Product marketing</span><span class="stag">Growth marketing</span><span class="stag">Lifecycle marketing</span><span class="stag">GTM strategy</span><span class="stag">Campaign strategy</span><span class="stag">A/B testing</span></div>
-    </div>
-    <div class="skill-card reveal">
-      <h3>Performance &amp; Analytics</h3>
-      <div class="stags"><span class="stag">Meta Ads</span><span class="stag">Google Ads</span><span class="stag">Google Analytics</span><span class="stag">UTM tracking</span><span class="stag">Funnel analysis</span><span class="stag">KPI definition</span></div>
-    </div>
-    <div class="skill-card reveal">
-      <h3>Data &amp; Visualisation</h3>
-      <div class="stags"><span class="stag">Excel (advanced)</span><span class="stag">SQL</span><span class="stag">Tableau</span><span class="stag">Power BI</span><span class="stag">Minitab</span><span class="stag">MS Access</span><span class="stag">Google Suite</span></div>
-    </div>
-    <div class="skill-card reveal">
-      <h3>Project &amp; Process</h3>
-      <div class="stags"><span class="stag">Lean Six Sigma</span><span class="stag">Process improvement</span><span class="stag">Jira</span><span class="stag">Asana</span><span class="stag">MS Project</span><span class="stag">Notion</span><span class="stag">Product roadmapping</span></div>
-    </div>
-    <div class="skill-card reveal">
-      <h3>Product &amp; Design</h3>
-      <div class="stags"><span class="stag">User research</span><span class="stag">Journey mapping</span><span class="stag">Competitive analysis</span><span class="stag">Value proposition</span><span class="stag">Figma</span><span class="stag">Miro</span><span class="stag">HubSpot</span></div>
+  <div class="glass-panel">
+    <p class="section-label reveal">Skills</p>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <h3>Marketing &amp; Growth</h3>
+        <div class="stags"><span class="stag">Product marketing</span><span class="stag">Growth marketing</span><span class="stag">Lifecycle marketing</span><span class="stag">GTM strategy</span><span class="stag">Campaign strategy</span><span class="stag">A/B testing</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Performance &amp; Analytics</h3>
+        <div class="stags"><span class="stag">Meta Ads</span><span class="stag">Google Ads</span><span class="stag">Google Analytics</span><span class="stag">UTM tracking</span><span class="stag">Funnel analysis</span><span class="stag">KPI definition</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Data &amp; Visualisation</h3>
+        <div class="stags"><span class="stag">Excel (advanced)</span><span class="stag">SQL</span><span class="stag">Tableau</span><span class="stag">Power BI</span><span class="stag">Minitab</span><span class="stag">MS Access</span><span class="stag">Google Suite</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Project &amp; Process</h3>
+        <div class="stags"><span class="stag">Lean Six Sigma</span><span class="stag">Process improvement</span><span class="stag">Jira</span><span class="stag">Asana</span><span class="stag">MS Project</span><span class="stag">Notion</span><span class="stag">Product roadmapping</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Product &amp; Design</h3>
+        <div class="stags"><span class="stag">User research</span><span class="stag">Journey mapping</span><span class="stag">Competitive analysis</span><span class="stag">Value proposition</span><span class="stag">Figma</span><span class="stag">Miro</span><span class="stag">HubSpot</span></div>
+      </div>
     </div>
   </div>
 </div>
@@ -236,24 +265,26 @@ footer p{font-size:12px;color:var(--muted);}
 
 <!-- EDUCATION -->
 <div class="wrap" id="education">
-  <p class="section-label reveal">Education</p>
-  <div class="edu-list">
-    <div class="edu-item reveal">
-      <img src="SU_LOGO.jpg" alt="Syracuse University" style="width:52px;height:52px;object-fit:contain;flex-shrink:0;"/>
-      <div class="edu-body">
-        <p class="edu-school">Syracuse University</p>
-        <p class="edu-deg">Master of Science, Engineering Management</p>
-        <p class="edu-detail">Merit Scholarship Holder</p>
+  <div class="glass-panel">
+    <p class="section-label reveal">Education</p>
+    <div class="edu-list">
+      <div class="edu-item reveal">
+        <img src="SU_LOGO.jpg" alt="Syracuse University" style="width:52px;height:52px;object-fit:contain;flex-shrink:0;"/>
+        <div class="edu-body">
+          <p class="edu-school">Syracuse University</p>
+          <p class="edu-deg">Master of Science, Engineering Management</p>
+          <p class="edu-detail">Merit Scholarship Holder</p>
+        </div>
+        <span class="edu-year">2024 – 2026</span>
       </div>
-      <span class="edu-year">2024 – 2026</span>
-    </div>
-    <div class="edu-item reveal">
-      <img src="kiit_logo.png" alt="KIIT" style="width:52px;height:52px;object-fit:contain;flex-shrink:0;"/>
-      <div class="edu-body">
-        <p class="edu-school">Kalinga Institute of Industrial Technology</p>
-        <p class="edu-deg">Bachelor of Technology, Computer Science &amp; Systems Engineering</p>
+      <div class="edu-item reveal">
+        <img src="kiit_logo.png" alt="KIIT" style="width:52px;height:52px;object-fit:contain;flex-shrink:0;"/>
+        <div class="edu-body">
+          <p class="edu-school">Kalinga Institute of Industrial Technology</p>
+          <p class="edu-deg">Bachelor of Technology, Computer Science &amp; Systems Engineering</p>
+        </div>
+        <span class="edu-year">2017 – 2021</span>
       </div>
-      <span class="edu-year">2017 – 2021</span>
     </div>
   </div>
 </div>
@@ -262,67 +293,60 @@ footer p{font-size:12px;color:var(--muted);}
 
 <!-- PROJECTS -->
 <div class="wrap" id="projects">
-  <p class="section-label reveal">Projects</p>
-  <div class="projects-grid">
-    <div class="project-card reveal">
-      <div class="project-header">
-        <p class="project-name">ApplyMate — AI Job Application Platform</p>
-        <p class="project-role">CEO &amp; Product Lead</p>
+  <div class="glass-panel">
+    <p class="section-label reveal">Projects</p>
+    <div class="projects-grid">
+      <div class="project-card reveal">
+        <div class="project-header">
+          <p class="project-name">ApplyMate — AI Job Application Platform</p>
+          <p class="project-role">CEO &amp; Product Lead</p>
+        </div>
+        <p class="project-desc">An AI-powered job application automation platform built with Syracuse University graduate students. Integrates with LinkedIn, Indeed, and Handshake to auto-match jobs, generate GPT-4-tailored resumes and cover letters, and enable one-click applications — targeting international students and early-career candidates hit hardest by ATS filters.</p>
+        <div class="project-stats">
+          <div class="stat"><span class="stat-val">$200K</span><p class="stat-label">Pre-seed ask</p></div>
+          <div class="stat"><span class="stat-val">10–12 hrs</span><p class="stat-label">Saved per week</p></div>
+          <div class="stat"><span class="stat-val">$321K</span><p class="stat-label">Year 1 revenue target</p></div>
+          <div class="stat"><span class="stat-val">3,000</span><p class="stat-label">Target paid users</p></div>
+        </div>
+        <div class="project-tags">
+          <span class="project-tag">GTM strategy</span><span class="project-tag">PRD</span><span class="project-tag">Investor pitch</span><span class="project-tag">Market research</span><span class="project-tag">Product positioning</span><span class="project-tag">Monetisation</span>
+        </div>
+        <a href="https://github.com/gauri-sachan/Apply-Mate_Business-Plan/blob/main/Apply-mate-PRD.md" target="_blank" class="project-link">View full PRD →</a>
       </div>
-      <p class="project-desc">An AI-powered job application automation platform built with Syracuse University graduate students. Integrates with LinkedIn, Indeed, and Handshake to auto-match jobs, generate GPT-4-tailored resumes and cover letters, and enable one-click applications — targeting international students and early-career candidates hit hardest by ATS filters.</p>
-      <div class="project-stats">
-        <div class="stat"><span class="stat-val">$200K</span><span class="stat-label">Pre-seed ask</span></div>
-        <div class="stat"><span class="stat-val">10–12 hrs</span><span class="stat-label">Saved per week</span></div>
-        <div class="stat"><span class="stat-val">$321K</span><span class="stat-label">Year 1 revenue target</span></div>
-        <div class="stat"><span class="stat-val">3,000</span><span class="stat-label">Target paid users</span></div>
-      </div>
-      <div class="project-tags">
-        <span class="project-tag">GTM strategy</span>
-        <span class="project-tag">PRD</span>
-        <span class="project-tag">Investor pitch</span>
-        <span class="project-tag">Market research</span>
-        <span class="project-tag">Product positioning</span>
-        <span class="project-tag">Monetisation</span>
-      </div>
-      <a href="https://github.com/gauri-sachan/Apply-Mate_Business-Plan/blob/main/Apply-mate-PRD.md" target="_blank" class="project-link">View full PRD →</a>
     </div>
   </div>
 </div>
 
+<div class="divider"></div>
+
+<!-- WRITING -->
 <div class="wrap" id="writing">
-  <p class="section-label reveal">Writing</p>
-  <div class="carousel-wrap reveal">
-    <div class="carousel-track-outer">
-      <div class="carousel-track" id="writingTrack">
-        <a href="https://tallysolutions.com/us/business-guides/intersection-of-social-media-and-retail-sales/" target="_blank" class="writing-item">
-          <div><p class="writing-title">The Intersection of Social Media and Retail Sales</p><p class="writing-desc">Social commerce strategies to boost brand visibility, engagement, and profitability</p><p class="writing-pub">Tally Solutions</p></div>
-          <span class="arr">→</span>
-        </a>
-        <a href="https://tallysolutions.com/us/accounting/accounting-practices-for-better-financial-management/" target="_blank" class="writing-item">
-          <div><p class="writing-title">5 Crucial Accounting Practices for Better Financial Management in 2024</p><p class="writing-desc">Key practices to overcome financial challenges and enhance business management</p><p class="writing-pub">Tally Solutions</p></div>
-          <span class="arr">→</span>
-        </a>
-        <a href="https://tallysolutions.com/us/inventory/inventory-management-strategies-for-small-businesses-usa/" target="_blank" class="writing-item">
-          <div><p class="writing-title">5 Effective Inventory Management Strategies for Small Businesses in the US</p><p class="writing-desc">Key tips to manage inventory and increase visibility for USA-based small businesses</p><p class="writing-pub">Tally Solutions</p></div>
-          <span class="arr">→</span>
-        </a>
-        <a href="https://tallysolutions.com/us/inventory/optimizing-inventory-management-with-business-reports/" target="_blank" class="writing-item">
-          <div><p class="writing-title">Nine Ways Business Reports Help You Optimize Inventory Management</p><p class="writing-desc">How business reports can improve and optimize inventory management</p><p class="writing-pub">Tally Solutions</p></div>
-          <span class="arr">→</span>
-        </a>
-        <a href="https://tallysolutions.com/us/inventory/inventory-management-kpis-metrics/" target="_blank" class="writing-item">
-          <div><p class="writing-title">Top 4 Inventory Management KPIs to Track for Business Efficiency</p><p class="writing-desc">Vital KPIs for sales, receiving, and fulfilment — guiding demand planning and cost control</p><p class="writing-pub">Tally Solutions</p></div>
-          <span class="arr">→</span>
-        </a>
-        <a href="https://tallysolutions.com/us/business-guides/generative-ai-for-business/" target="_blank" class="writing-item">
-          <div><p class="writing-title">4 Ways Generative AI Can Help Businesses Sell Smartly</p><p class="writing-desc">How Gen AI revolutionizes sales through personalized content and automated forecasting</p><p class="writing-pub">Tally Solutions</p></div>
-          <span class="arr">→</span>
-        </a>
+  <div class="glass-panel">
+    <p class="section-label reveal">Writing</p>
+    <div class="carousel-wrap reveal">
+      <div class="carousel-track-outer">
+        <div class="carousel-track" id="writingTrack">
+          <a href="https://tallysolutions.com/us/business-guides/intersection-of-social-media-and-retail-sales/" target="_blank" class="writing-item">
+            <div><p class="writing-title">The Intersection of Social Media and Retail Sales</p><p class="writing-desc">Social commerce strategies to boost brand visibility, engagement, and profitability</p><p class="writing-pub">Tally Solutions</p></div><span class="arr">→</span>
+          </a>
+          <a href="https://tallysolutions.com/us/accounting/accounting-practices-for-better-financial-management/" target="_blank" class="writing-item">
+            <div><p class="writing-title">5 Crucial Accounting Practices for Better Financial Management in 2024</p><p class="writing-desc">Key practices to overcome financial challenges and enhance business management</p><p class="writing-pub">Tally Solutions</p></div><span class="arr">→</span>
+          </a>
+          <a href="https://tallysolutions.com/us/inventory/inventory-management-strategies-for-small-businesses-usa/" target="_blank" class="writing-item">
+            <div><p class="writing-title">5 Effective Inventory Management Strategies for Small Businesses in the US</p><p class="writing-desc">Key tips to manage inventory and increase visibility for USA-based small businesses</p><p class="writing-pub">Tally Solutions</p></div><span class="arr">→</span>
+          </a>
+          <a href="https://tallysolutions.com/us/inventory/optimizing-inventory-management-with-business-reports/" target="_blank" class="writing-item">
+            <div><p class="writing-title">Nine Ways Business Reports Help You Optimize Inventory Management</p><p class="writing-desc">How business reports can improve and optimize inventory management</p><p class="writing-pub">Tally Solutions</p></div><span class="arr">→</span>
+          </a>
+          <a href="https://tallysolutions.com/us/inventory/inventory-management-kpis-metrics/" target="_blank" class="writing-item">
+            <div><p class="writing-title">Top 4 Inventory Management KPIs to Track for Business Efficiency</p><p class="writing-desc">Vital KPIs for sales, receiving, and fulfilment — guiding demand planning and cost control</p><p class="writing-pub">Tally Solutions</p></div><span class="arr">→</span>
+          </a>
+          <a href="https://tallysolutions.com/us/business-guides/generative-ai-for-business/" target="_blank" class="writing-item">
+            <div><p class="writing-title">4 Ways Generative AI Can Help Businesses Sell Smartly</p><p class="writing-desc">How Gen AI revolutionizes sales through personalized content and automated forecasting</p><p class="writing-pub">Tally Solutions</p></div><span class="arr">→</span>
+          </a>
+        </div>
       </div>
-    </div>
-    <div class="carousel-btns">
-      <button class="carousel-btn" id="prevBtn">←</button>
-      <button class="carousel-btn" id="nextBtn">→</button>
+      <div class="carousel-dots" id="carouselDots"></div>
     </div>
   </div>
 </div>
@@ -331,27 +355,14 @@ footer p{font-size:12px;color:var(--muted);}
 
 <!-- CERTIFICATIONS -->
 <div class="wrap" id="certifications">
-  <p class="section-label reveal">Certifications</p>
-  <div class="cert-grid">
-    <div class="cert-card reveal">
-      <img src="sa-cspo-300.png" alt="CSPO" class="cert-logo"/>
-      <div><p class="cert-name">Certified Scrum Product Owner</p><p class="cert-date">Mar 2025</p></div>
-    </div>
-    <div class="cert-card reveal">
-      <img src="PMI_GenAIforPM.png" alt="PMI" class="cert-logo"/>
-      <div><p class="cert-name">Practical Application of Gen AI for Project Managers</p><p class="cert-date">PMI · Feb 2026</p></div>
-    </div>
-    <div class="cert-card reveal">
-      <img src="semrush.png" alt="Semrush" class="cert-logo"/>
-      <div><p class="cert-name">AI Visibility Essentials in SEO</p><p class="cert-date">Semrush · Feb 2026</p></div>
-    </div>
-    <div class="cert-card reveal">
-      <img src="whitman.png" alt="Whitman" class="cert-logo"/>
-      <div><p class="cert-name">Lean Six Sigma Green Belt — Level II</p><p class="cert-date">Dec 2025</p></div>
-    </div>
-    <div class="cert-card reveal">
-      <img src="SU_LOGO.jpg" alt="Syracuse University" class="cert-logo"/>
-      <div><p class="cert-name">Welcome Ambassador — International Orientation Leader</p><p class="cert-date">Syracuse University · Aug 2025</p></div>
+  <div class="glass-panel">
+    <p class="section-label reveal">Certifications</p>
+    <div class="cert-grid">
+      <div class="cert-card reveal"><img src="sa-cspo-300.png" alt="CSPO" class="cert-logo"/><div><p class="cert-name">Certified Scrum Product Owner</p><p class="cert-date">Mar 2025</p></div></div>
+      <div class="cert-card reveal"><img src="PMI_GenAIforPM.png" alt="PMI" class="cert-logo"/><div><p class="cert-name">Practical Application of Gen AI for Project Managers</p><p class="cert-date">PMI · Feb 2026</p></div></div>
+      <div class="cert-card reveal"><img src="semrush.png" alt="Semrush" class="cert-logo"/><div><p class="cert-name">AI Visibility Essentials in SEO</p><p class="cert-date">Semrush · Feb 2026</p></div></div>
+      <div class="cert-card reveal"><img src="whitman.png" alt="Whitman" class="cert-logo"/><div><p class="cert-name">Lean Six Sigma Green Belt — Level II</p><p class="cert-date">Dec 2025</p></div></div>
+      <div class="cert-card reveal"><img src="SU_LOGO.jpg" alt="Syracuse University" class="cert-logo"/><div><p class="cert-name">Welcome Ambassador — International Orientation Leader</p><p class="cert-date">Syracuse University · Aug 2025</p></div></div>
     </div>
   </div>
 </div>
@@ -369,47 +380,117 @@ footer p{font-size:12px;color:var(--muted);}
   </div>
 </div>
 
-<button class="back-top" id="backTop" title="Back to top">↑</button>
+<footer><p>Gauri Sachan © 2026</p></footer>
 
-<footer>
-  <p>Gauri Sachan © 2026</p>
-</footer>
+<!-- BACK TO TOP -->
+<button class="back-top" id="backTop"><svg width="22" height="14" viewBox="0 0 22 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 13L11 2L21 13" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+
+<!-- RESUME FLOAT -->
+<button class="resume-float" id="resumeFloat">Download Resume</button>
+
+<!-- RESUME MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <button class="modal-close" id="modalClose">✕</button>
+    <h3>Download Resume</h3>
+    <p>Drop your email and I'll know you stopped by. The PDF downloads instantly.</p>
+    <div id="formWrap">
+      <form id="resumeForm">
+        <input type="text" name="name" placeholder="Your name (optional)" autocomplete="off"/>
+        <input type="email" name="email" placeholder="Your email *" required autocomplete="off"/>
+        <button type="submit" class="modal-submit">Download PDF →</button>
+      </form>
+    </div>
+    <div class="modal-success" id="formSuccess"><p>Downloading now — thanks for stopping by! 🎉</p></div>
+  </div>
+</div>
 
 <script>
+/* TYPEWRITER */
 const words=['marketer','manager'];
 let wi=0,ci=0,del=false;
-const el=document.getElementById('tw');
+const twEl=document.getElementById('tw');
 function type(){
   const w=words[wi];
-  if(!del){el.textContent=w.slice(0,++ci);if(ci===w.length){setTimeout(()=>{del=true;},1400);setTimeout(type,60);return;}}
-  else{el.textContent=w.slice(0,--ci);if(ci===0){del=false;wi=(wi+1)%words.length;}}
+  if(!del){twEl.textContent=w.slice(0,++ci);if(ci===w.length){setTimeout(()=>{del=true;},1400);setTimeout(type,60);return;}}
+  else{twEl.textContent=w.slice(0,--ci);if(ci===0){del=false;wi=(wi+1)%words.length;}}
   setTimeout(type,del?45:80);
 }
 setTimeout(type,1600);
 
-const backTop=document.getElementById('backTop');
-const skillsSec=document.getElementById('skills');
-window.addEventListener('scroll',()=>{
-  const trigger=skillsSec.getBoundingClientRect().top+window.scrollY;
-  backTop.classList.toggle('visible',window.scrollY>trigger);
-});
-backTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
-let cur=0;
-function getMax(){return track.querySelectorAll('.writing-item').length-2;}
-function slide(){
-  const w=track.querySelectorAll('.writing-item')[0].getBoundingClientRect().width+16;
-  track.style.transform=`translateX(-${cur*w}px)`;
-}
-document.getElementById('nextBtn').addEventListener('click',()=>{if(cur<getMax()){cur++;slide();}});
-document.getElementById('prevBtn').addEventListener('click',()=>{if(cur>0){cur--;slide();}});
-
-const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:.1});
+/* SCROLL REVEAL */
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:.08});
 document.querySelectorAll('.reveal').forEach(e=>obs.observe(e));
 
-const links=document.querySelectorAll('.nav-links a');
-const secs=document.querySelectorAll('[id]');
-const spy=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));const a=document.querySelector(`.nav-links a[href="#${e.target.id}"]`);if(a)a.classList.add('active');}});},{threshold:.35});
-secs.forEach(s=>spy.observe(s));
+/* NAV ACTIVE */
+const navLinks=document.querySelectorAll('.nav-links a');
+const spy=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){navLinks.forEach(l=>l.classList.remove('active'));const a=document.querySelector(`.nav-links a[href="#${e.target.id}"]`);if(a)a.classList.add('active');}});},{threshold:.3});
+document.querySelectorAll('[id]').forEach(s=>spy.observe(s));
+
+/* BACK TO TOP + RESUME FLOAT */
+const backTop=document.getElementById('backTop');
+const resumeFloat=document.getElementById('resumeFloat');
+const skillsSec=document.getElementById('skills');
+window.addEventListener('scroll',()=>{
+  const show=window.scrollY>skillsSec.getBoundingClientRect().top+window.scrollY;
+  backTop.classList.toggle('visible',show);
+});
+backTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+/* RESUME MODAL */
+const overlay=document.getElementById('modalOverlay');
+resumeFloat.addEventListener('click',()=>overlay.classList.add('active'));
+document.getElementById('modalClose').addEventListener('click',()=>overlay.classList.remove('active'));
+overlay.addEventListener('click',e=>{if(e.target===overlay)overlay.classList.remove('active');});
+document.getElementById('resumeForm').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const fd=new FormData(e.target);
+  fetch('https://formspree.io/f/xbdpwjno',{method:'POST',body:fd,headers:{'Accept':'application/json'}}).catch(()=>{});
+  const a=document.createElement('a');
+  a.href='resume.pdf';
+  a.download='Gauri_Sachan_Resume.pdf';
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  document.getElementById('formWrap').style.display='none';
+  document.getElementById('formSuccess').style.display='block';
+  setTimeout(()=>{overlay.classList.remove('active');document.getElementById('formWrap').style.display='block';document.getElementById('formSuccess').style.display='none';e.target.reset();},2500);
+});
+
+/* AUTO CAROUSEL */
+function setupCarousel(){
+  const outer=document.querySelector('.carousel-track-outer');
+  const track=document.getElementById('writingTrack');
+  const items=track.querySelectorAll('.writing-item');
+  const w=outer.getBoundingClientRect().width;
+  if(w===0){setTimeout(setupCarousel,150);return;}
+  const itemW=Math.floor(w/2)-8;
+  items.forEach(item=>item.style.width=itemW+'px');
+  const total=items.length;
+  const steps=total-1;
+  let idx=0;
+
+  /* dots */
+  const dotsEl=document.getElementById('carouselDots');
+  const numDots=Math.ceil(total/2);
+  for(let i=0;i<numDots;i++){
+    const d=document.createElement('div');
+    d.className='dot'+(i===0?' active':'');
+    dotsEl.appendChild(d);
+  }
+  const dots=dotsEl.querySelectorAll('.dot');
+
+  function goTo(i){
+    idx=i;
+    track.style.transform=`translateX(-${idx*(itemW+16)}px)`;
+    dots.forEach((d,j)=>d.classList.toggle('active',j===Math.floor(idx/2)));
+  }
+  dots.forEach((d,i)=>d.addEventListener('click',()=>goTo(i*2)));
+
+  setInterval(()=>{
+    const next=idx+2>=total?0:idx+2;
+    goTo(next);
+  },5500);
+}
+requestAnimationFrame(()=>setTimeout(setupCarousel,200));
 </script>
 </body>
 </html>
