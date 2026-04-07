@@ -191,9 +191,8 @@ footer p{font-size:12px;color:rgba(255,255,255,0.3);}
     <a href="#projects">Projects</a>
     <a href="#writing">Writing</a>
     <a href="#certifications">Certifications</a>
-    <a href="#contact">Contact</a>
   </div>
-  <a href="mailto:gigasachan@gmail.com" class="nav-cta">Get in touch</a>
+  <a href="#contact" class="nav-cta">Get in touch</a>
 </nav>
 
 <div id="hero">
@@ -204,7 +203,7 @@ footer p{font-size:12px;color:rgba(255,255,255,0.3);}
   <p class="hero-sub">Five years at the intersection of users, data, and product strategy — helping teams decide what to build, how to position it, and how to measure impact.</p>
   <div class="hero-btns">
     <a href="https://www.linkedin.com/in/gaurisachan/" target="_blank" class="btn-li">LinkedIn ↗</a>
-    <a href="mailto:gigasachan@gmail.com" class="btn-contact">Contact me</a>
+    <button onclick="document.getElementById('coverlay').classList.add('on')" class="btn-contact">Contact me</button>
   </div>
 </div>
 
@@ -214,7 +213,7 @@ footer p{font-size:12px;color:rgba(255,255,255,0.3);}
     <div class="about-img reveal"><img src="Profile_Pic_About.jpg" alt="Gauri Sachan" style="width:100%;height:100%;object-fit:cover;"/></div>
     <div class="about-text">
       <h2 class="reveal">Marketing + systems thinking, end to end.</h2>
-      <p class="reveal">I'm Gauri Sachan, a Masters in Engineering Management student at Syracuse University (<span style="color:#F76900;font-weight:500;">GO ORANGE!</span>), with five years of experience in product marketing, growth, and analytics for B2B and digital products. I've gravitated toward roles at the intersection of users, data, and product strategy — helping teams decide what to build, how to position it, and how to measure impact.</p>
+      <p class="reveal">I'm <strong>Gauri Sachan</strong>, a Masters in Engineering Management student at Syracuse University (<span style="color:#F76900;font-weight:500;">GO ORANGE!</span>), with five years of experience in product marketing, growth, and analytics for B2B and digital products. I've gravitated toward roles at the intersection of users, data, and product strategy — helping teams decide what to build, how to position it, and how to measure impact.</p>
       <p class="reveal">My approach: clarify the goal, understand the user, design experiments, and measure what actually moved the needle.</p>
       <div class="tag-row reveal">
         <span class="tag">B2B SaaS</span><span class="tag">Growth</span><span class="tag">Analytics</span><span class="tag">Product Marketing</span><span class="tag">Product Management</span><span class="tag">Lean Six Sigma</span>
@@ -302,6 +301,7 @@ footer p{font-size:12px;color:rgba(255,255,255,0.3);}
     <div class="contact-links">
       <a href="mailto:gigasachan@gmail.com" class="contact-link">gigasachan@gmail.com</a>
       <a href="https://www.linkedin.com/in/gaurisachan/" target="_blank" class="contact-link">linkedin.com/in/gaurisachan</a>
+      <button onclick="document.getElementById('coverlay').classList.add('on')" style="margin-top:.5rem;background:rgba(34,211,238,0.15);color:var(--cyan);border:0.5px solid rgba(34,211,238,0.4);padding:9px 20px;border-radius:20px;font-size:13px;font-weight:500;cursor:pointer;font-family:var(--ff);transition:background .2s;" onmouseover="this.style.background='rgba(34,211,238,0.25)'" onmouseout="this.style.background='rgba(34,211,238,0.15)'">Contact me</button>
     </div>
   </div>
 </div>
@@ -336,6 +336,23 @@ footer p{font-size:12px;color:rgba(255,255,255,0.3);}
   <svg width="22" height="14" viewBox="0 0 22 14" fill="none"><path d="M1 13L11 2L21 13" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </button>
 <button class="resume-btn" id="resumeBtn">Download Resume</button>
+
+<div class="overlay" id="coverlay">
+  <div class="modal">
+    <button class="modal-x" id="cmodalX">✕</button>
+    <h3>Get in touch</h3>
+    <p>I'd love to hear from you — drop a note and I'll get back soon.</p>
+    <div id="cfwrap">
+      <form id="cForm">
+        <input type="text" name="name" placeholder="Your name *" required/>
+        <input type="email" name="email" placeholder="Your email *" required/>
+        <textarea name="comments" placeholder="Your message..." rows="4" style="width:100%;padding:10px 14px;background:rgba(255,255,255,0.06);border:0.5px solid rgba(255,255,255,0.2);border-radius:10px;font-size:14px;margin-bottom:.85rem;font-family:var(--ff);outline:none;color:#fff;resize:vertical;transition:border-color .2s;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='rgba(255,255,255,0.2)'"></textarea>
+        <button type="submit" class="modal-btn">Send message →</button>
+      </form>
+    </div>
+    <div class="success" id="csuccess"><p>Message sent — thanks for reaching out! 🚀</p></div>
+  </div>
+</div>
 
 <div class="overlay" id="overlay">
   <div class="modal">
@@ -376,6 +393,16 @@ footer p{font-size:12px;color:rgba(255,255,255,0.3);}
   var sk=document.getElementById('skills');
   window.addEventListener('scroll',function(){bt.classList.toggle('show',window.scrollY>sk.offsetTop);});
   bt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+
+  document.getElementById('cmodalX').addEventListener('click',function(){document.getElementById('coverlay').classList.remove('on');});
+  document.getElementById('coverlay').addEventListener('click',function(e){if(e.target===document.getElementById('coverlay'))document.getElementById('coverlay').classList.remove('on');});
+  document.getElementById('cForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    fetch('https://formspree.io/f/xvzvlaqe',{method:'POST',body:new FormData(e.target),headers:{'Accept':'application/json'}}).catch(function(){});
+    document.getElementById('cfwrap').style.display='none';
+    document.getElementById('csuccess').style.display='block';
+    setTimeout(function(){document.getElementById('coverlay').classList.remove('on');document.getElementById('cfwrap').style.display='block';document.getElementById('csuccess').style.display='none';e.target.reset();},2500);
+  });
 
   var ov=document.getElementById('overlay');
   document.getElementById('resumeBtn').addEventListener('click',function(){ov.classList.add('on');});
