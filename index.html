@@ -252,6 +252,7 @@ footer p{font-size:12px;color:rgba(255,255,255,0.3);}
 <div class="wrap" id="projects">
   <p class="slabel reveal">Projects</p>
   <div class="projects-grid">
+
     <div class="project-card reveal">
       <div class="proj-header"><p class="proj-name">ApplyMate — AI Job Application Platform</p><p class="proj-role">CEO &amp; Product Lead</p></div>
       <p class="proj-desc">An AI-powered job application automation platform built with Syracuse University graduate students. Integrates with LinkedIn, Indeed, and Handshake to auto-match jobs, generate GPT-4-tailored resumes and cover letters, and enable one-click applications — targeting international students and early-career candidates hit hardest by ATS filters.</p>
@@ -264,6 +265,20 @@ footer p{font-size:12px;color:rgba(255,255,255,0.3);}
       <div class="proj-tags"><span class="proj-tag">GTM strategy</span><span class="proj-tag">PRD</span><span class="proj-tag">Investor pitch</span><span class="proj-tag">Market research</span><span class="proj-tag">Product positioning</span><span class="proj-tag">Monetisation</span></div>
       <a href="https://github.com/gauri-sachan/Apply-Mate_Business-Plan/blob/main/Apply-mate-PRD.md" target="_blank" class="proj-link">View full PRD →</a>
     </div>
+
+    <div class="project-card reveal">
+      <div class="proj-header"><p class="proj-name">Laundry Process Optimization — Lean Six Sigma</p><p class="proj-role">Consultant &amp; Analyst</p></div>
+      <p class="proj-desc">Applied the DMAIC framework to improve laundry operations at Loretto Health &amp; Rehabilitation, Syracuse NY. Identified root causes of persistent delays and backlogs, then implemented a low-cost digital tracking system and real-time Tableau dashboards to improve process visibility and staff utilization.</p>
+      <div class="proj-stats">
+        <div><span class="stat-val">4</span><span class="stat-label">Root causes validated</span></div>
+        <div><span class="stat-val">≥90%</span><span class="stat-label">Completion rate KPI</span></div>
+        <div><span class="stat-val">≥98%</span><span class="stat-label">Tracking compliance KPI</span></div>
+        <div><span class="stat-val">5</span><span class="stat-label">KPIs defined</span></div>
+      </div>
+      <div class="proj-tags"><span class="proj-tag">Lean Six Sigma</span><span class="proj-tag">DMAIC</span><span class="proj-tag">Tableau</span><span class="proj-tag">Google Forms</span><span class="proj-tag">Process mapping</span><span class="proj-tag">Root cause analysis</span></div>
+      <a href="https://github.com/gauri-sachan/Lean-Six-Sigma-Process-Optimization---Loretto" target="_blank" class="proj-link">View GitHub repo →</a>
+    </div>
+
   </div>
 </div>
 
@@ -310,25 +325,10 @@ footer p{font-size:12px;color:rgba(255,255,255,0.3);}
 
 <div class="landscape">
   <svg viewBox="0 0 1440 220" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <linearGradient id="lg" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#050210"/>
-        <stop offset="100%" stop-color="#000"/>
-      </linearGradient>
-    </defs>
+    <defs><linearGradient id="lg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#050210"/><stop offset="100%" stop-color="#000"/></linearGradient></defs>
     <path d="M0,180 Q120,155 200,165 Q320,175 400,160 Q500,148 580,158 Q680,170 760,152 Q860,135 940,148 Q1040,162 1120,150 Q1240,135 1330,155 L1440,160 L1440,220 L0,220 Z" fill="url(#lg)" opacity="0.5"/>
     <path d="M0,195 Q80,178 150,185 Q240,194 300,180 Q380,165 450,175 Q540,188 620,172 Q710,155 800,168 Q890,182 970,170 Q1060,156 1140,168 Q1230,182 1310,170 Q1380,160 1440,172 L1440,220 L0,220 Z" fill="url(#lg)" opacity="0.75"/>
     <path d="M0,210 Q60,200 100,205 Q140,198 160,205 L180,197 Q200,192 220,200 Q260,194 290,202 Q330,195 360,200 Q410,196 440,203 Q480,195 520,201 Q560,194 600,202 Q640,196 680,204 Q720,196 760,201 Q800,196 840,204 Q880,197 920,202 Q960,196 1000,203 Q1040,196 1080,201 Q1120,196 1160,202 Q1200,196 1240,200 Q1280,196 1320,202 Q1370,197 1440,200 L1440,220 L0,220 Z" fill="#050210"/>
-    <path d="M80,204 Q90,192 105,196 Q118,188 128,196 Q140,192 142,204 Z" fill="#0a0520"/>
-    <path d="M320,202 Q332,188 350,193 Q365,185 375,194 Q385,190 386,202 Z" fill="#0a0520"/>
-    <path d="M620,200 Q634,184 655,190 Q672,182 684,191 Q695,186 696,200 Z" fill="#080418"/>
-    <path d="M950,198 Q960,186 974,190 Q985,183 994,190 Q1000,187 1001,198 Z" fill="#0a0520"/>
-    <path d="M1260,200 Q1272,187 1288,192 Q1300,185 1310,192 Q1318,188 1320,200 Z" fill="#080418"/>
-    <ellipse cx="200" cy="212" rx="12" ry="4" fill="#0a0520"/>
-    <ellipse cx="500" cy="214" rx="9" ry="3" fill="#080418"/>
-    <ellipse cx="850" cy="213" rx="14" ry="4" fill="#0a0520"/>
-    <ellipse cx="1100" cy="212" rx="10" ry="3" fill="#080418"/>
-    <ellipse cx="1380" cy="213" rx="11" ry="3" fill="#0a0520"/>
   </svg>
 </div>
 
@@ -444,28 +444,12 @@ footer p{font-size:12px;color:rgba(255,255,255,0.3);}
   var pts=[];
   for(var i=0;i<220;i++){
     var layer=Math.random();
-    pts.push({
-      x:Math.random()*window.innerWidth,
-      y:Math.random()*window.innerHeight,
-      r:Math.random()*1.1+0.15,
-      o:Math.random()*0.55+0.1,
-      s:Math.random()*0.09+0.01,
-      d:(Math.random()-0.5)*0.03,
-      t:Math.random()*Math.PI*2,
-      p:layer<0.4?0:layer<0.75?0.12:0.22
-    });
+    pts.push({x:Math.random()*window.innerWidth,y:Math.random()*window.innerHeight,r:Math.random()*1.1+0.15,o:Math.random()*0.55+0.1,s:Math.random()*0.09+0.01,d:(Math.random()-0.5)*0.03,t:Math.random()*Math.PI*2,p:layer<0.4?0:layer<0.75?0.12:0.22});
   }
   var shoots=[];
   function spawnShoot(){
     var goLeft=Math.random()<0.5;
-    shoots.push({
-      x:goLeft?window.innerWidth+150:-150,
-      y:Math.random()*window.innerHeight*0.85,
-      vx:goLeft?-(7+Math.random()*5):(7+Math.random()*5),
-      vy:1.5+Math.random()*2.5,
-      len:130+Math.random()*90,
-      life:1
-    });
+    shoots.push({x:goLeft?window.innerWidth+150:-150,y:Math.random()*window.innerHeight*0.85,vx:goLeft?-(7+Math.random()*5):(7+Math.random()*5),vy:1.5+Math.random()*2.5,len:130+Math.random()*90,life:1});
     setTimeout(spawnShoot,18000+Math.random()*6000);
   }
   spawnShoot();
