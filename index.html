@@ -113,12 +113,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .3s,transform .3s;cursor:pointer;}
 .dot.active{background:var(--cyan);transform:scale(1.3);}
 
-.cert-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;}
-.cert-card{background:rgba(255,255,255,0.04);border:0.5px solid rgba(255,255,255,0.08);border-radius:14px;padding:1.5rem 1rem 1rem;display:flex;flex-direction:column;align-items:center;gap:.85rem;transition:transform .25s,border-color .25s;text-align:center;}
+.cert-outer{overflow:hidden;}
+.cert-track{display:flex;gap:1rem;transition:transform .6s cubic-bezier(.4,0,.2,1);}
+.cert-card{flex-shrink:0;background:rgba(255,255,255,0.04);border:0.5px solid rgba(255,255,255,0.08);border-radius:14px;padding:1.5rem 1rem 1rem;display:flex;flex-direction:column;align-items:center;gap:.85rem;transition:transform .25s,border-color .25s;text-align:center;}
 .cert-card:hover{transform:translateY(-8px);border-color:rgba(255,255,255,0.2);}
 .cert-logo{width:72px;height:72px;border-radius:12px;object-fit:contain;}
 .cert-name{font-size:12px;font-weight:500;color:#e0d7ff;line-height:1.4;}
 .cert-date{font-size:11px;color:var(--muted);}
+.carr-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.5);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:0.5px solid rgba(255,255,255,0.2);color:#fff;width:32px;height:32px;border-radius:50%;cursor:pointer;z-index:10;font-size:15px;display:flex;align-items:center;justify-content:center;transition:background .2s;font-family:var(--ff);line-height:1;}
+.carr-btn:hover{background:rgba(255,255,255,0.15);}
+.carr-prev{left:-16px;}
+.carr-next{right:-16px;}
 
 .contact-block{background:rgba(255,255,255,0.04);border-radius:18px;border:0.5px solid rgba(255,255,255,0.08);padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;}
 .contact-block h2{font-size:1.6rem;font-weight:400;letter-spacing:-.02em;max-width:360px;line-height:1.3;color:#fff;}
@@ -301,12 +306,19 @@ footer p{font-size:12px;color:rgba(255,255,255,0.3);}
 
 <div class="wrap" id="certifications">
   <p class="slabel reveal">Certifications</p>
-  <div class="cert-grid">
-    <div class="cert-card reveal"><img src="sa-cspo-300.png" alt="CSPO" class="cert-logo"/><p class="cert-name">Certified Scrum Product Owner</p><p class="cert-date">Mar 2025</p></div>
-    <div class="cert-card reveal"><img src="PMI_GenAIforPM.png" alt="PMI" class="cert-logo"/><p class="cert-name">Practical Application of Gen AI for Project Managers</p><p class="cert-date">PMI · Feb 2026</p></div>
-    <div class="cert-card reveal"><img src="semrush.png" alt="Semrush" class="cert-logo"/><p class="cert-name">AI Visibility Essentials in SEO</p><p class="cert-date">Semrush · Feb 2026</p></div>
-    <div class="cert-card reveal"><img src="whitman.png" alt="Whitman" class="cert-logo"/><p class="cert-name">Lean Six Sigma Green Belt — Level II</p><p class="cert-date">Dec 2025</p></div>
-    <div class="cert-card reveal"><img src="SU_LOGO.jpg" alt="SU" class="cert-logo"/><p class="cert-name">Welcome Ambassador — International Orientation Leader</p><p class="cert-date">Syracuse University · Aug 2025</p></div>
+  <div class="reveal" style="position:relative;padding:0 20px;">
+    <button class="carr-btn carr-prev" id="certPrev">&#8592;</button>
+    <div class="cert-outer">
+      <div class="cert-track" id="certTrack">
+        <div class="cert-card"><img src="IBM_AI_PM.png" alt="IBM" class="cert-logo"/><p class="cert-name">Product Management Essentials</p><p class="cert-date">IBM · Apr 2026</p></div>
+        <div class="cert-card"><img src="sa-cspo-300.png" alt="CSPO" class="cert-logo"/><p class="cert-name">Certified Scrum Product Owner</p><p class="cert-date">Mar 2025</p></div>
+        <div class="cert-card"><img src="PMI_GenAIforPM.png" alt="PMI" class="cert-logo"/><p class="cert-name">Practical Application of Gen AI for Project Managers</p><p class="cert-date">PMI · Feb 2026</p></div>
+        <div class="cert-card"><img src="semrush.png" alt="Semrush" class="cert-logo"/><p class="cert-name">AI Visibility Essentials in SEO</p><p class="cert-date">Semrush · Feb 2026</p></div>
+        <div class="cert-card"><img src="whitman.png" alt="Whitman" class="cert-logo"/><p class="cert-name">Lean Six Sigma Green Belt — Level II</p><p class="cert-date">Dec 2025</p></div>
+        <div class="cert-card"><img src="SU_LOGO.jpg" alt="SU" class="cert-logo"/><p class="cert-name">Welcome Ambassador — International Orientation Leader</p><p class="cert-date">Syracuse University · Aug 2025</p></div>
+      </div>
+    </div>
+    <button class="carr-btn carr-next" id="certNext">&#8594;</button>
   </div>
 </div>
 
@@ -434,7 +446,22 @@ footer p{font-size:12px;color:rgba(255,255,255,0.3);}
     dots.forEach(function(d,i){d.addEventListener('click',function(){go(i*2);});});
     setInterval(function(){go(idx+2>=total?0:idx+2);},5500);
   }
-  requestAnimationFrame(function(){setTimeout(initCarousel,300);});
+  function initCertCarousel(){
+    var outer=document.querySelector('.cert-outer');
+    var track=document.getElementById('certTrack');
+    var cards=track.querySelectorAll('.cert-card');
+    var w=outer.getBoundingClientRect().width;
+    if(w===0){setTimeout(initCertCarousel,200);return;}
+    var gap=16,visible=5;
+    var cw=Math.floor((w-gap*(visible-1))/visible);
+    cards.forEach(function(c){c.style.width=cw+'px';});
+    var total=cards.length,idx=0,maxIdx=total-visible;
+    function go(n){idx=Math.max(0,Math.min(n,maxIdx));track.style.transform='translateX(-'+(idx*(cw+gap))+'px)';}
+    document.getElementById('certPrev').addEventListener('click',function(){go(idx-1);});
+    document.getElementById('certNext').addEventListener('click',function(){go(idx+1);});
+    setInterval(function(){go(idx>=maxIdx?0:idx+1);},3500);
+  }
+  requestAnimationFrame(function(){setTimeout(initCarousel,300);setTimeout(initCertCarousel,300);});
 
   var sc=document.getElementById('stars');
   var sx=sc.getContext('2d');
