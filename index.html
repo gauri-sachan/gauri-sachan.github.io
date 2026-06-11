@@ -120,12 +120,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .3s,transform .3s;cursor:pointer;}
 .dot.active{background:var(--cyan);transform:scale(1.3);}
 
-.cert-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;}
-.cert-card{background:rgba(255,255,255,0.04);border:0.5px solid rgba(255,255,255,0.08);border-radius:14px;padding:1.5rem 1rem 1rem;display:flex;flex-direction:column;align-items:center;gap:.85rem;transition:transform .25s,border-color .25s;text-align:center;}
+.cert-outer{overflow:hidden;}
+.cert-track{display:flex;gap:1rem;transition:transform .6s cubic-bezier(.4,0,.2,1);}
+.cert-card{flex-shrink:0;background:rgba(255,255,255,0.04);border:0.5px solid rgba(255,255,255,0.08);border-radius:14px;padding:1.5rem 1rem 1rem;display:flex;flex-direction:column;align-items:center;gap:.85rem;transition:transform .25s,border-color .25s;text-align:center;}
 .cert-card:hover{transform:translateY(-8px);border-color:rgba(255,255,255,0.2);}
 .cert-logo{width:72px;height:72px;border-radius:12px;object-fit:contain;}
 .cert-name{font-size:12px;font-weight:500;color:#e0d7ff;line-height:1.4;}
 .cert-date{font-size:11px;color:var(--muted);}
+.carr-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.5);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:0.5px solid rgba(255,255,255,0.2);color:#fff;width:32px;height:32px;border-radius:50%;cursor:pointer;z-index:10;font-size:15px;display:flex;align-items:center;justify-content:center;transition:background .2s;font-family:var(--ff);}
+.carr-btn:hover{background:rgba(255,255,255,0.15);}
+.carr-prev{left:-16px;}
+.carr-next{right:-16px;}
 
 .contact-block{background:rgba(255,255,255,0.04);border-radius:18px;border:0.5px solid rgba(255,255,255,0.08);padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;}
 .contact-block h2{font-size:1.6rem;font-weight:400;letter-spacing:-.02em;max-width:360px;line-height:1.3;color:#fff;}
@@ -282,8 +287,20 @@ footer p{font-size:12px;color:rgba(255,255,255,0.3);}
             <div><span class="stat-val">$321K</span><span class="stat-label">Year 1 revenue target</span></div>
             <div><span class="stat-val">3,000</span><span class="stat-label">Target paid users</span></div>
           </div>
-          <div class="proj-tags"><span class="proj-tag">GTM strategy</span><span class="proj-tag">PRD</span><span class="proj-tag">Investor pitch</span><span class="proj-tag">Market research</span><span class="proj-tag">Product positioning</span><span class="proj-tag">Monetisation</span></div>
+          <div class="proj-tags"><span class="proj-tag">GTM strategy</span><span class="proj-tag">Product roadmapping</span><span class="proj-tag">PRD writing</span><span class="proj-tag">Market research</span><span class="proj-tag">Competitive analysis</span><span class="proj-tag">Product positioning</span></div>
           <a href="https://github.com/gauri-sachan/Apply-Mate_Business-Plan/blob/main/Apply-mate-PRD.md" target="_blank" class="proj-link">View full PRD &#8594;</a>
+        </div>
+        <div class="project-card">
+          <div class="proj-header"><p class="proj-name">Lean Six Sigma: Process Optimization Project</p><p class="proj-role">Consultant &amp; Analyst</p></div>
+          <p class="proj-desc">Applied the DMAIC framework to improve laundry process operations at Loretto Health &amp; Rehabilitation, Syracuse NY. Identified root causes of persistent delays and backlogs, then implemented a low-cost digital tracking system and real-time Tableau dashboards to improve process visibility, staff utilization and reduce overhead costs.</p>
+          <div class="proj-stats">
+            <div><span class="stat-val">4</span><span class="stat-label">Root causes validated</span></div>
+            <div><span class="stat-val">&#8805;90%</span><span class="stat-label">Completion rate KPI</span></div>
+            <div><span class="stat-val">&#8805;98%</span><span class="stat-label">Tracking compliance KPI</span></div>
+            <div><span class="stat-val">5</span><span class="stat-label">KPIs defined</span></div>
+          </div>
+          <div class="proj-tags"><span class="proj-tag">Lean Six Sigma</span><span class="proj-tag">DMAIC</span><span class="proj-tag">Process mapping</span><span class="proj-tag">KPI design</span><span class="proj-tag">VOC analysis</span><span class="proj-tag">SOP development</span></div>
+          <a href="https://github.com/gauri-sachan/Lean-Six-Sigma-Process-Optimization---Loretto" target="_blank" class="proj-link">View GitHub repo &#8594;</a>
         </div>
       </div>
     </div>
@@ -310,12 +327,19 @@ footer p{font-size:12px;color:rgba(255,255,255,0.3);}
 
 <div class="wrap" id="certifications">
   <p class="slabel reveal">Certifications</p>
-  <div class="cert-grid">
-    <div class="cert-card reveal"><img src="sa-cspo-300.png" alt="CSPO" class="cert-logo"/><p class="cert-name">Certified Scrum Product Owner</p><p class="cert-date">Mar 2025</p></div>
-    <div class="cert-card reveal"><img src="PMI_GenAIforPM.png" alt="PMI" class="cert-logo"/><p class="cert-name">Practical Application of Gen AI for Project Managers</p><p class="cert-date">PMI · Feb 2026</p></div>
-    <div class="cert-card reveal"><img src="semrush.png" alt="Semrush" class="cert-logo"/><p class="cert-name">AI Visibility Essentials in SEO</p><p class="cert-date">Semrush · Feb 2026</p></div>
-    <div class="cert-card reveal"><img src="whitman.png" alt="Whitman" class="cert-logo"/><p class="cert-name">Lean Six Sigma Green Belt — Level II</p><p class="cert-date">Dec 2025</p></div>
-    <div class="cert-card reveal"><img src="SU_LOGO.jpg" alt="SU" class="cert-logo"/><p class="cert-name">Welcome Ambassador — International Orientation Leader</p><p class="cert-date">Syracuse University · Aug 2025</p></div>
+  <div class="reveal" style="position:relative;padding:0 20px;">
+    <button class="carr-btn carr-prev" id="certPrev">&#8592;</button>
+    <div class="cert-outer">
+      <div class="cert-track" id="certTrack">
+        <div class="cert-card"><img src="IBM_AI_PM.png" alt="IBM" class="cert-logo"/><p class="cert-name">Product Management Essentials</p><p class="cert-date">IBM · Apr 2026</p></div>
+        <div class="cert-card"><img src="sa-cspo-300.png" alt="CSPO" class="cert-logo"/><p class="cert-name">Certified Scrum Product Owner</p><p class="cert-date">Mar 2025</p></div>
+        <div class="cert-card"><img src="PMI_GenAIforPM.png" alt="PMI" class="cert-logo"/><p class="cert-name">Practical Application of Gen AI for Project Managers</p><p class="cert-date">PMI · Feb 2026</p></div>
+        <div class="cert-card"><img src="semrush.png" alt="Semrush" class="cert-logo"/><p class="cert-name">AI Visibility Essentials in SEO</p><p class="cert-date">Semrush · Feb 2026</p></div>
+        <div class="cert-card"><img src="whitman.png" alt="Whitman" class="cert-logo"/><p class="cert-name">Lean Six Sigma Green Belt — Level II</p><p class="cert-date">Dec 2025</p></div>
+        <div class="cert-card"><img src="SU_LOGO.jpg" alt="SU" class="cert-logo"/><p class="cert-name">Welcome Ambassador — International Orientation Leader</p><p class="cert-date">Syracuse University · Aug 2025</p></div>
+      </div>
+    </div>
+    <button class="carr-btn carr-next" id="certNext">&#8594;</button>
   </div>
 </div>
 
