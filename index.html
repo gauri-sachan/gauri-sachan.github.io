@@ -88,27 +88,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 
 /* PROJECT CAROUSEL */
 .proj-carousel-wrap{position:relative;padding:0 28px;}
-.proj-carousel-outer{overflow:hidden;transition:mask-image 1.1s cubic-bezier(.4,0,.2,1),-webkit-mask-image 1.1s cubic-bezier(.4,0,.2,1);}
-.proj-carousel-outer.state-a{
-  -webkit-mask-image:linear-gradient(to right,black 0%,black 88%,transparent 100%);
-  mask-image:linear-gradient(to right,black 0%,black 88%,transparent 100%);
-}
-.proj-carousel-outer.state-b{
-  -webkit-mask-image:linear-gradient(to right,transparent 0%,black 12%,black 100%);
-  mask-image:linear-gradient(to right,transparent 0%,black 12%,black 100%);
-}
+.proj-carousel-outer{overflow:hidden;-webkit-mask-image:linear-gradient(to right,black 0%,black 88%,transparent 100%);mask-image:linear-gradient(to right,black 0%,black 88%,transparent 100%);}
 .proj-carousel-track{display:flex;gap:1rem;transition:transform 1.1s cubic-bezier(.4,0,.2,1);}
-/* FIX 1: proj-header stacks role below name so it never bleeds out */
 .project-card{flex-shrink:0;background:rgba(255,255,255,0.04);border:0.5px solid rgba(255,255,255,0.08);border-radius:14px;padding:1.75rem;display:flex;flex-direction:column;gap:1rem;transition:transform .2s,border-color .2s;text-decoration:none;cursor:pointer;}
 .project-card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,0.2);}
 .proj-arrow{position:absolute;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.1);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:0.5px solid rgba(255,255,255,0.2);color:#fff;cursor:pointer;z-index:2;display:flex;align-items:center;justify-content:center;font-size:13px;transition:background .2s;font-family:var(--ff);}
 .proj-arrow:hover{background:rgba(255,255,255,0.22);}
 .proj-arrow-left{left:0;}
 .proj-arrow-right{right:0;}
-/* FIX 1: stack name + role vertically, role wraps naturally */
-.proj-header{display:flex;flex-direction:column;gap:.3rem;}
+.proj-header{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;}
 .proj-name{font-size:17px;font-weight:500;color:#fff;line-height:1.3;}
-.proj-role{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);font-weight:500;}
+.proj-role{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);font-weight:500;white-space:nowrap;margin-top:3px;}
 .proj-desc{font-size:14px;color:var(--text);line-height:1.7;}
 .proj-stats{display:flex;gap:1.25rem;flex-wrap:wrap;}
 .stat-val{font-size:15px;font-weight:600;color:var(--amber);display:block;}
@@ -274,13 +264,10 @@ footer p{font-size:12px;color:rgba(255,255,255,0.3);}
   <p class="slabel reveal">Projects</p>
   <div class="proj-carousel-wrap reveal">
     <button class="proj-arrow proj-arrow-left" id="projPrev">&#8592;</button>
-    <div class="proj-carousel-outer state-a" id="projOuter">
+    <div class="proj-carousel-outer">
       <div class="proj-carousel-track" id="projTrack">
         <a class="project-card" href="https://github.com/gauri-sachan/highradius-pmm-case-study" target="_blank">
-          <div class="proj-header">
-            <p class="proj-name">Content &amp; Competitive Engine at HighRadius</p>
-            <p class="proj-role">Product Marketing Analyst</p>
-          </div>
+          <div class="proj-header"><p class="proj-name">Content &amp; Competitive Engine at HighRadius</p><p class="proj-role">Product Marketing Analyst</p></div>
           <p class="proj-desc">Built the SEO content program, competitive battlecard framework, and RadiusOne LinkedIn brand from zero at HighRadius — a $3.1B AI-powered FinTech SaaS. Targeted CFO-level enterprise buyers across the full Order-to-Cash landscape.</p>
           <div class="proj-stats">
             <div><span class="stat-val">37%</span><span class="stat-label">Lead conversion lift</span></div>
@@ -292,10 +279,7 @@ footer p{font-size:12px;color:rgba(255,255,255,0.3);}
           <span class="proj-link">Read case study &#8594;</span>
         </a>
         <a class="project-card" href="https://github.com/gauri-sachan/Apply-Mate_Business-Plan/blob/main/Apply-mate-PRD.md" target="_blank">
-          <div class="proj-header">
-            <p class="proj-name">ApplyMate — AI Job Application Platform</p>
-            <p class="proj-role">CEO &amp; Product Lead</p>
-          </div>
+          <div class="proj-header"><p class="proj-name">ApplyMate — AI Job Application Platform</p><p class="proj-role">CEO &amp; Product Lead</p></div>
           <p class="proj-desc">An AI-powered job application automation platform built with Syracuse University graduate students. Integrates with LinkedIn, Indeed, and Handshake to auto-match jobs, generate GPT-4-tailored resumes and cover letters, and enable one-click applications — targeting international students and early-career candidates hit hardest by ATS filters.</p>
           <div class="proj-stats">
             <div><span class="stat-val">$200K</span><span class="stat-label">Pre-seed ask</span></div>
@@ -307,10 +291,7 @@ footer p{font-size:12px;color:rgba(255,255,255,0.3);}
           <span class="proj-link">View full PRD &#8594;</span>
         </a>
         <a class="project-card" href="https://github.com/gauri-sachan/Lean-Six-Sigma-Process-Optimization---Loretto" target="_blank">
-          <div class="proj-header">
-            <p class="proj-name">Lean Six Sigma: Process Optimization Project</p>
-            <p class="proj-role">Consultant &amp; Analyst</p>
-          </div>
+          <div class="proj-header"><p class="proj-name">Lean Six Sigma: Process Optimization Project</p><p class="proj-role">Consultant &amp; Analyst</p></div>
           <p class="proj-desc">Applied the DMAIC framework to improve laundry process operations at Loretto Health &amp; Rehabilitation, Syracuse NY. Identified root causes of persistent delays and backlogs, then implemented a low-cost digital tracking system and real-time Tableau dashboards to improve process visibility, staff utilization and reduce overhead costs.</p>
           <div class="proj-stats">
             <div><span class="stat-val">4</span><span class="stat-label">Root causes validated</span></div>
@@ -517,9 +498,8 @@ footer p{font-size:12px;color:rgba(255,255,255,0.3);}
     },2500);
   });
 
-  /* PROJECT CAROUSEL — FIX 2: swap mask class on state change */
   function initProjCarousel(){
-    var pouter=document.getElementById('projOuter');
+    var pouter=document.querySelector('.proj-carousel-outer');
     var ptrack=document.getElementById('projTrack');
     if(!pouter||!ptrack){return;}
     var pw=pouter.getBoundingClientRect().width;
@@ -528,18 +508,14 @@ footer p{font-size:12px;color:rgba(255,255,255,0.3);}
     var pcardW=Math.floor((pw-pgap*1.5)/2.3);
     var pitems=ptrack.querySelectorAll('.project-card');
     pitems.forEach(function(item){item.style.width=pcardW+'px';item.style.flexShrink='0';});
+    /* two states: A = right peek only, B = left peek + 2 full cards */
     var stateA=0;
     var stateB=Math.round(0.7*pcardW+pgap);
     var pidx=0;
-
     function pgo(n){
       pidx=((n%2)+2)%2;
       ptrack.style.transform='translateX(-'+[stateA,stateB][pidx]+'px)';
-      /* swap the mask: state-a = fade right only; state-b = fade left only */
-      pouter.classList.toggle('state-a', pidx===0);
-      pouter.classList.toggle('state-b', pidx===1);
     }
-
     document.getElementById('projPrev').addEventListener('click',function(){pgo(pidx-1);});
     document.getElementById('projNext').addEventListener('click',function(){pgo(pidx+1);});
     setInterval(function(){pgo(pidx+1);},6000);
@@ -677,3 +653,4 @@ footer p{font-size:12px;color:rgba(255,255,255,0.3);}
 </script>
 </body>
 </html>
+
