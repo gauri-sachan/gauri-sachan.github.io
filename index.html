@@ -90,8 +90,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .proj-carousel-wrap{position:relative;padding:0 28px;}
 .proj-carousel-outer{overflow:hidden;-webkit-mask-image:linear-gradient(to right,black 0%,black 88%,transparent 100%);mask-image:linear-gradient(to right,black 0%,black 88%,transparent 100%);}
 .proj-carousel-track{display:flex;gap:1rem;transition:transform .6s cubic-bezier(.4,0,.2,1);}
-.project-card{flex-shrink:0;background:rgba(255,255,255,0.04);border:0.5px solid rgba(255,255,255,0.08);border-radius:14px;padding:1.75rem;display:flex;flex-direction:column;gap:1rem;transition:transform .2s;}
-.project-card:hover{transform:translateY(-4px);}
+.project-card{flex-shrink:0;background:rgba(255,255,255,0.04);border:0.5px solid rgba(255,255,255,0.08);border-radius:14px;padding:1.75rem;display:flex;flex-direction:column;gap:1rem;transition:transform .2s,border-color .2s;text-decoration:none;cursor:pointer;}
+.project-card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,0.2);}
 .proj-arrow{position:absolute;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.1);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:0.5px solid rgba(255,255,255,0.2);color:#fff;cursor:pointer;z-index:2;display:flex;align-items:center;justify-content:center;font-size:13px;transition:background .2s;font-family:var(--ff);}
 .proj-arrow:hover{background:rgba(255,255,255,0.22);}
 .proj-arrow-left{left:0;}
@@ -266,7 +266,7 @@ footer p{font-size:12px;color:rgba(255,255,255,0.3);}
     <button class="proj-arrow proj-arrow-left" id="projPrev">&#8592;</button>
     <div class="proj-carousel-outer">
       <div class="proj-carousel-track" id="projTrack">
-        <div class="project-card">
+        <a class="project-card" href="https://github.com/gauri-sachan/highradius-pmm-case-study" target="_blank">
           <div class="proj-header"><p class="proj-name">Content &amp; Competitive Engine at HighRadius</p><p class="proj-role">Product Marketing Analyst</p></div>
           <p class="proj-desc">Built the SEO content program, competitive battlecard framework, and RadiusOne LinkedIn brand from zero at HighRadius — a $3.1B AI-powered FinTech SaaS. Targeted CFO-level enterprise buyers across the full Order-to-Cash landscape.</p>
           <div class="proj-stats">
@@ -276,9 +276,9 @@ footer p{font-size:12px;color:rgba(255,255,255,0.3);}
             <div><span class="stat-val">75</span><span class="stat-label">Battlecards deployed</span></div>
           </div>
           <div class="proj-tags"><span class="proj-tag">Product Marketing</span><span class="proj-tag">SEO</span><span class="proj-tag">Sales Enablement</span><span class="proj-tag">Competitive Intelligence</span><span class="proj-tag">B2B SaaS</span><span class="proj-tag">Content Strategy</span></div>
-          <a href="https://github.com/gauri-sachan/highradius-pmm-case-study" target="_blank" class="proj-link">Read case study &#8594;</a>
-        </div>
-        <div class="project-card">
+          <span class="proj-link">Read case study &#8594;</span>
+        </a>
+        <a class="project-card" href="https://github.com/gauri-sachan/Apply-Mate_Business-Plan/blob/main/Apply-mate-PRD.md" target="_blank">
           <div class="proj-header"><p class="proj-name">ApplyMate — AI Job Application Platform</p><p class="proj-role">CEO &amp; Product Lead</p></div>
           <p class="proj-desc">An AI-powered job application automation platform built with Syracuse University graduate students. Integrates with LinkedIn, Indeed, and Handshake to auto-match jobs, generate GPT-4-tailored resumes and cover letters, and enable one-click applications — targeting international students and early-career candidates hit hardest by ATS filters.</p>
           <div class="proj-stats">
@@ -288,9 +288,9 @@ footer p{font-size:12px;color:rgba(255,255,255,0.3);}
             <div><span class="stat-val">3,000</span><span class="stat-label">Target paid users</span></div>
           </div>
           <div class="proj-tags"><span class="proj-tag">GTM strategy</span><span class="proj-tag">Product roadmapping</span><span class="proj-tag">PRD writing</span><span class="proj-tag">Market research</span><span class="proj-tag">Competitive analysis</span><span class="proj-tag">Product positioning</span></div>
-          <a href="https://github.com/gauri-sachan/Apply-Mate_Business-Plan/blob/main/Apply-mate-PRD.md" target="_blank" class="proj-link">View full PRD &#8594;</a>
-        </div>
-        <div class="project-card">
+          <span class="proj-link">View full PRD &#8594;</span>
+        </a>
+        <a class="project-card" href="https://github.com/gauri-sachan/Lean-Six-Sigma-Process-Optimization---Loretto" target="_blank">
           <div class="proj-header"><p class="proj-name">Lean Six Sigma: Process Optimization Project</p><p class="proj-role">Consultant &amp; Analyst</p></div>
           <p class="proj-desc">Applied the DMAIC framework to improve laundry process operations at Loretto Health &amp; Rehabilitation, Syracuse NY. Identified root causes of persistent delays and backlogs, then implemented a low-cost digital tracking system and real-time Tableau dashboards to improve process visibility, staff utilization and reduce overhead costs.</p>
           <div class="proj-stats">
@@ -300,8 +300,8 @@ footer p{font-size:12px;color:rgba(255,255,255,0.3);}
             <div><span class="stat-val">5</span><span class="stat-label">KPIs defined</span></div>
           </div>
           <div class="proj-tags"><span class="proj-tag">Lean Six Sigma</span><span class="proj-tag">DMAIC</span><span class="proj-tag">Process mapping</span><span class="proj-tag">KPI design</span><span class="proj-tag">VOC analysis</span><span class="proj-tag">SOP development</span></div>
-          <a href="https://github.com/gauri-sachan/Lean-Six-Sigma-Process-Optimization---Loretto" target="_blank" class="proj-link">View GitHub repo &#8594;</a>
-        </div>
+          <span class="proj-link">View GitHub repo &#8594;</span>
+        </a>
       </div>
     </div>
     <button class="proj-arrow proj-arrow-right" id="projNext">&#8594;</button>
@@ -548,10 +548,29 @@ footer p{font-size:12px;color:rgba(255,255,255,0.3);}
     setInterval(function(){go(idx+2>=total?0:idx+2);},5500);
   }
 
+  /* CERT CAROUSEL */
+  function initCertCarousel(){
+    var outer=document.querySelector('.cert-outer');
+    var track=document.getElementById('certTrack');
+    if(!outer||!track){return;}
+    var cards=track.querySelectorAll('.cert-card');
+    var w=outer.getBoundingClientRect().width;
+    if(w===0){setTimeout(initCertCarousel,200);return;}
+    var gap=16,visible=5;
+    var cw=Math.floor((w-gap*(visible-1))/visible);
+    cards.forEach(function(c){c.style.width=cw+'px';});
+    var total=cards.length,cidx=0,maxIdx=total-visible;
+    function cgo(n){cidx=Math.max(0,Math.min(n,maxIdx));track.style.transform='translateX(-'+(cidx*(cw+gap))+'px)';}
+    document.getElementById('certPrev').addEventListener('click',function(){cgo(cidx-1);});
+    document.getElementById('certNext').addEventListener('click',function(){cgo(cidx+1);});
+    setInterval(function(){cgo(cidx>=maxIdx?0:cidx+1);},3500);
+  }
+
   requestAnimationFrame(function(){
     setTimeout(function(){
       initProjCarousel();
       initWritingCarousel();
+      initCertCarousel();
     },300);
   });
 
